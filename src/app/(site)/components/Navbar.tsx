@@ -3,22 +3,26 @@
 import React, { useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
-// import logo from "../../../../public/images/circular-logo.svg";
 import RotatingHamburger from './RotatingHamburger';
 import { useEffect } from "react";
 import { SanityDocument } from 'next-sanity';
 import imageUrlBuilder from "@sanity/image-url"
-import { projectId, dataset } from '../../../sanity/env';
+import { projectId, dataset } from '../../../../sanity/env';
 
 const urlFor = (source: any) =>
     imageUrlBuilder({ projectId, dataset }).image(source)
 
-const navItems = [
-  { link: "Home", path: "/" },
-  { link: "About", path: "/about" },
-  { link: "Services", path: "/services" },
-  { link: "Contact", path: "/contact" },
-];
+// const navItems = [
+//   { link: "Home", path: "/" },
+//   { link: "About", path: "/about" },
+//   { link: "Services", path: "/services" },
+//   { link: "Contact", path: "/contact" },
+// ];
+
+type Link = {
+  label: string;
+  url: string;
+}
 
 type Props = {
     navigationMenu: SanityDocument
@@ -53,12 +57,8 @@ const Navbar = ({navigationMenu}: Props) => {
             alt="placeholder logo"
             width={246}
             height={65}
-            // fill
           />
           </div>
-          <h1 className="text-xl font-semibold text-secondary hidden xl:block">
-            Classic Header
-          </h1>
         </Link>
         <RotatingHamburger open={open} setOpen={setOpen} />
       </div>
@@ -67,7 +67,7 @@ const Navbar = ({navigationMenu}: Props) => {
           "flex flex-col md:flex-row gap-12 md:gap-8 items-center w-full md:w-auto justify-center md:justify-end absolute md:static top-[76px] left-0 right-0 h-[calc(100vh-76px)] md:h-auto bg-background transition-all ease-in-out duration-500 " +
           (open ? "translate-x-0" : "translate-x-[100vh] md:translate-x-0")
         }>
-        {links.map((link) => {
+        {links.map((link: Link) => {
           const { label, url } = link;
           return (
             <li key={label}>

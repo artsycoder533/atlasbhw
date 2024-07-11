@@ -1,4 +1,3 @@
-
 import Navbar from "./Navbar"
 import { SanityDocument } from "next-sanity"
 import { NAVIGATION_MENU_QUERY } from "../../../../sanity/lib/queries"

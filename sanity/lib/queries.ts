@@ -13,5 +13,5 @@ export const NAVIGATION_MENU_QUERY = groq`*[_type == "navigationMenu"] {
       },
       isCTA
     }
-  }[0]` // Assuming you have only one navigation menu document
+  }[0]`
   

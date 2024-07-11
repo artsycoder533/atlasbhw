@@ -102,7 +102,7 @@ const Navbar = ({ navigationMenu }: Props) => {
           return (
             <li key={label}>
               <Link
-                className="text-2xl md:text-base hover:underline py-2 text-primary-text hover:text-accent"
+                className={`text-2xl md:text-base hover:underline py-2 text-primary-text hover:text-accent ${isCTA ? 'bg-teal-700 p-4 text-white' : 'bg-none'}`}
                 href={url}
                 scroll={false}
                 onClick={() => setOpen(false)}

@@ -11,7 +11,7 @@ const Header = async (props: Props) => {
 
     console.log('navigationMenu-->',navigationMenu)
   return (
-    <header className="px-4 py-2 fixed w-full shadow-sm top-0 z-30 bg-background">
+    <header className="px-4 py-2 fixed w-full top-0 z-30 bg-background">
       <Navbar navigationMenu={navigationMenu} />
     </header>
   )

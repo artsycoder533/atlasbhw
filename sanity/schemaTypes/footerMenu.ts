@@ -15,6 +15,12 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'The title of the footer menu.',
+    }),
+    defineField({
       name: 'links',
       title: 'Links',
       type: 'array',
@@ -74,7 +80,7 @@ export default defineType({
       type: 'string',
       description: 'The author of the website. This field is not editable.',
       readOnly: true,
-      initialValue: 'Natasha Johnson', // Replace with the actual author name
+      initialValue: 'Ten-23 Agency, LLC',
     }),
   ],
 })

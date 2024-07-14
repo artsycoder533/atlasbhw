@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`flex flex-col min-h-screen ${inter.className}`}>
         {draftMode().isEnabled && (
           <div>
             <a className="p-4 bg-blue-300 block" href="/api/disable-draft">
@@ -29,7 +29,7 @@ export default function RootLayout({
           </div>
         )}
         <Header />
-        <main>{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
         {draftMode().isEnabled && <VisualEditing />}
       </body>

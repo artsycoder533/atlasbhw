@@ -21,8 +21,8 @@ export default defineType({
       description: 'The title of the footer menu.',
     }),
     defineField({
-      name: 'links',
-      title: 'Links',
+      name: 'footerLinks',
+      title: 'Footer Links',
       type: 'array',
       of: [
         defineField({
@@ -53,10 +53,54 @@ export default defineType({
                       description: 'The text to display for the sublink.',
                     }),
                     defineField({
-                      name: 'slug',
-                      title: 'Slug',
-                      type: 'slug',
-                      description: 'The URL to navigate to when the sublink is clicked.',
+                      name: "linkType",
+                      title: "Link Type",
+                      type: "string",
+                      options: {
+                        list: [
+                          { title: "Full URL", value: "fullUrl" },
+                          { title: "Relative URL", value: "relativeUrl" },
+                          { title: "Anchor Link", value: "anchorLink" },
+                        ],
+                        layout: "radio",
+                      },
+                      validation: (Rule) => Rule.required(),
+                      description: `
+                        The type of link:
+                        - **Full URL**: A complete URL (e.g., https://example.com)
+                        - **Relative URL**: A relative path (e.g., /services)
+                        - **Anchor Link**: An anchor link within the page (e.g., #section).
+                      `,
+                    }),
+                    defineField({
+                      name: "url",
+                      title: "URL",
+                      type: "string",
+                      description:
+                        "The URL to navigate to when the link is clicked. Should match the selected link type.",
+                      validation: (Rule) =>
+                        Rule.custom((value, context) => {
+                          const parent = context.parent as {
+                            linkType?: string;
+                          };
+        
+                          if (!value || !parent.linkType) {
+                            return true;
+                          }
+        
+                          const { linkType } = parent;
+        
+                          if (linkType === "fullUrl" && !value.startsWith("https://")) {
+                            return 'Full URLs must start with "https://".';
+                          }
+                          if (linkType === "relativeUrl" && !value.startsWith("/")) {
+                            return 'Relative URLs must start with "/".';
+                          }
+                          if (linkType === "anchorLink" && !value.startsWith("#")) {
+                            return 'Anchor links must start with "#".';
+                          }
+                          return true;
+                        }),
                     }),
                   ],
                 }),

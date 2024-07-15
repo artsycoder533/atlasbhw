@@ -77,11 +77,11 @@ const Navbar = ({ navigationMenu }: Props) => {
                   className="flex gap-2 items-center"
                 >
                   {label}
-                  {openDropdown ?  <BiCaretUp /> :<BiCaretDown />}
+                  {openDropdown ?  <BiCaretUp className="text-xl"/> :<BiCaretDown className="text-xl"/>}
                  
                 </button>
                 <ul
-                  className={`lg:w-[250px] lg:absolute top-full left-0 mt-2 flex flex-col gap-2 border bg-white text-primary-text rounded-md transition-all ${openDropdown === label ? "block" : "hidden"}`}
+                  className={`lg:w-[250px] lg:absolute top-full left-0 mt-2 flex flex-col gap-2 lg:border bg-white text-primary-text rounded-md transition-all ${openDropdown === label ? "block" : "hidden"}`}
                 >
                   {dropdownLinks?.map((dropdownLink, idx) => {
                     const { label, url } = dropdownLink;
@@ -103,7 +103,7 @@ const Navbar = ({ navigationMenu }: Props) => {
           return (
             <li key={label}>
               <Link
-                className={`text-xl lg:text-base hover:underline py-2 text-primary-text hover:text-accent ${isCTA ? 'bg-accent p-4 text-white' : 'bg-none'}`}
+                className={`text-xl lg:text-base hover:underline py-2 text-primary-text hover:text-accent ${isCTA ? 'bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white hover:no-underline' : 'bg-none'}`}
                 href={url}
                 scroll={false}
                 onClick={() => setOpen(false)}

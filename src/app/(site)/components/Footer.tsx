@@ -58,7 +58,7 @@ const Footer = async (props: Props) => {
                 <ul className="space-y-4">
                   {sublinks.map((sublink) => (
                     <li key={sublink._key}>
-                      <Link href={sublink.url}>{sublink.label}</Link>
+                      <Link href={sublink.url} className="hover:text-accent">{sublink.label}</Link>
                     </li>
                   ))}
                 </ul>

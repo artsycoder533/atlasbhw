@@ -7,7 +7,10 @@ import { projectId, dataset } from "../../../../sanity/env";
 import Image from "next/image";
 import { getYear } from "@/utils/helper";
 import Link from "next/link";
-import { link } from "fs";
+import Title from "./Title";
+import { FaHeart, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
+import { AiOutlineMail } from "react-icons/ai";
+import { MdEmail } from "react-icons/md";
 
 const urlFor = (source: any) =>
   imageUrlBuilder({ projectId, dataset }).image(source);
@@ -30,11 +33,13 @@ const Footer = async (props: Props) => {
   const footerMenu = await sanityFetch<SanityDocument>({
     query: FOOTER_MENU_QUERY,
   });
-  const { copyrightInfo, author, image, title, footerLinks } = footerMenu[0];
+  const { copyrightInfo, createdBy, creatorWebsite, image, footerLinks } =
+    footerMenu[0];
+
   return (
-    <footer className="bg-primary-black text-white">
-      <div className="flex justify-between max-w-[1400px] mx-auto p-3">
-        <div>
+    <footer className="bg-primary-black text-primary-white py-6">
+      <div className="flex flex-col xl:flex-row justify-between max-w-[1400px] mx-auto px-6 2xl:px-0 gap-10">
+        <div className="flex self-center justify-between xl:self-start">
           <Image
             src={urlFor(image).width(200).height(219).quality(100).url()}
             alt="placeholder logo"
@@ -43,14 +48,14 @@ const Footer = async (props: Props) => {
             className="object-contain"
           />
         </div>
-        <div className="flex gap-24">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-24 xl:gap-24 py-3">
           {footerLinks.map((item: footerLink) => {
             const { heading, sublinks } = item;
 
             return (
               <div key={item._key} className="">
-                <h4 className="uppercase text-lg font-medium mb-2">{heading}</h4>
-                <ul className="space-y-3">
+                <Title title={heading} size="sm" />
+                <ul className="space-y-4">
                   {sublinks.map((sublink) => (
                     <li key={sublink._key}>
                       <Link href={sublink.url}>{sublink.label}</Link>
@@ -61,23 +66,28 @@ const Footer = async (props: Props) => {
             );
           })}
         </div>
-        
       </div>
-      <div className="flex flex-col items-center py-4">
-          <p>
-            &copy; {getYear()} {copyrightInfo}
-          </p>
-          <p className="text-sm">
-            Made with ♥️ by{" "}
-            <Link
-              href="https://www.ten23.agency/"
-              className="underline"
-              target="_blank"
-            >
-              Ten-23 Agency, LLC
-            </Link>
-          </p>
+      <div className="flex flex-col lg:flex-row items-center justify-between py-4 mt-3 space-y-2 lg:space-y-0 text-primary-gray max-w-[1400px] mx-auto px-6 2xl:px-0">
+        <p className="text-sm">
+          &copy; {getYear()} {copyrightInfo}
+        </p>
+        <div className="flex justify-between text-2xl w-48 text-accent">
+          <FaLinkedin />
+          <MdEmail />
+          <FaPhoneAlt />
         </div>
+      </div>
+      <p className="text-sm flex gap-1 items-center justify-center">
+        Made with <FaHeart className="text-red-700" /> by:
+        <Link
+          href={creatorWebsite}
+          className="underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {createdBy}
+        </Link>
+      </p>
     </footer>
   );
 };

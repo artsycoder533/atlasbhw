@@ -119,13 +119,21 @@ export default defineType({
       description: 'The copyright information to display in the footer.',
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
+      name: 'createdBy',
+      title: 'Created By',
       type: 'string',
-      description: 'The author of the website. This field is not editable.',
-      readOnly: true,
+      description: 'The creator of this website. This field is not editable.',
       initialValue: 'Ten-23 Agency, LLC',
+      readOnly: true,
     }),
+    defineField({
+      name: 'creatorWebsite',
+      title: 'Creator Website',
+      type: 'url',
+      description: 'The creators website.  This field is not editable.',
+      initialValue: 'https://www.ten23.agency/',
+      readOnly: true,
+    })
   ],
 })
 

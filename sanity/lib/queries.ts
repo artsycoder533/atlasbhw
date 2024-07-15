@@ -33,6 +33,7 @@ export const FOOTER_MENU_QUERY = groq`*[_type == "footerMenu"]{
     }
   },
   copyrightInfo,
-  author
+  createdBy,
+  creatorWebsite
 }
 `;

@@ -10,8 +10,12 @@ const config: Config = {
     extend: {
       colors: {
         'accent': '#329c9c',
+        'secondary-accent': '#8fcacc',
+        'primary-brown': '#57433f',
         'primary-text': '#57433f',
-        'primary-black': '#1b1b1b'
+        'primary-black': '#1b1b1b',
+        'primary-gray': '#d3d3d3',
+        'primary-white': '#fffafa',
       }
     },
   },

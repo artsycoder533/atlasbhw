@@ -14,10 +14,15 @@ const urlFor = (source: any) =>
 
 type Link = {
   label: string;
-  url: string;
+  slug: {
+    current: string;
+    type: string;
+  };
+  slugType: string;
   isDropdown: boolean;
   dropdownLinks: Link[];
   isCTA: boolean;
+  _id: string;
 };
 
 type Props = {
@@ -68,27 +73,65 @@ const Navbar = ({ navigationMenu }: Props) => {
         }
       >
         {links.map((link: Link) => {
-          const { label, url, isDropdown, dropdownLinks, isCTA } = link;
+          const {
+            label,
+            isDropdown,
+            dropdownLinks,
+            isCTA,
+            slug,
+            slugType,
+            _id,
+          } = link;
+          const { current } = slug;
+
+          let href;
+          if (slugType === "relativeUrl") {
+            href = `/${current}`;
+          } else if (slugType === "externalUrl") {
+            href = current;
+          } else if (slugType === "anchorLink") {
+            href = `/#${current}`;
+          } else {
+            href = "";
+          }
           if (isDropdown && dropdownLinks.length > 0) {
             return (
-              <li key={label} className="relative text-xl lg:text-base text-primary-text hover:text-accent">
+              <li
+                key={label}
+                className="relative text-xl lg:text-base text-primary-text hover:text-accent"
+              >
                 <button
                   onClick={() => toggleDropdown(label)}
                   className="flex gap-2 items-center"
                 >
                   {label}
-                  {openDropdown === label ?  <BiCaretUp className="text-xl"/> :<BiCaretDown className="text-xl"/>}
-                 
+                  {openDropdown === label ? (
+                    <BiCaretUp className="text-xl" />
+                  ) : (
+                    <BiCaretDown className="text-xl" />
+                  )}
                 </button>
                 <ul
                   className={`lg:w-[250px] lg:absolute top-full left-0 mt-2 flex flex-col gap-2 lg:border bg-white text-primary-text rounded-md transition-all ${openDropdown === label ? "block" : "hidden"}`}
                 >
-                  {dropdownLinks?.map((dropdownLink, idx) => {
-                    const { label, url } = dropdownLink;
+                  {dropdownLinks?.map((dropdownLink) => {
+                    const { label, slug, slugType, _id } = dropdownLink;
+                    const { current } = slug;
+
+                    let href;
+                    if (slugType === "relativeUrl") {
+                      href = `/${current}`;
+                    } else if (slugType === "externalUrl") {
+                      href = current;
+                    } else if (slugType === "anchorLink") {
+                      href = `/#${current}`;
+                    } else {
+                      href = "";
+                    }
                     return (
-                      <li key={idx}>
+                      <li key={_id}>
                         <Link
-                          href={url || ""}
+                          href={href}
                           className="flex px-4 py-2 hover:bg-gray-100 hover:text-accent"
                         >
                           {label}
@@ -101,10 +144,10 @@ const Navbar = ({ navigationMenu }: Props) => {
             );
           }
           return (
-            <li key={label}>
+            <li key={_id}>
               <Link
-                className={`text-xl lg:text-base py-2 text-primary-text hover:text-accent ${isCTA ? 'bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white' : 'bg-none'}`}
-                href={url}
+                className={`text-xl lg:text-base py-2 text-primary-text hover:text-accent ${isCTA ? "bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white" : "bg-none"}`}
+                href={href}
                 scroll={false}
                 onClick={() => setOpen(false)}
               >
@@ -119,6 +162,3 @@ const Navbar = ({ navigationMenu }: Props) => {
 };
 
 export default Navbar;
-
-
-

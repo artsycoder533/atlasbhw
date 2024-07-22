@@ -10,25 +10,16 @@ export default defineType({
       title: "Title",
       type: "string",
       description: "The title of the page.",
-    }),
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
+      validation: (Rule) => Rule.required().error('Title is required')
     }),
     defineField({
       name: "content",
       title: "Content",
       type: "array",
       of: [
-        { type: "heroSection" },
-        { type: 'services'},
-        {type: 'contactInfo'},
-      ]
+        { type: "reference", to: [{ type: "heroSection" }, { type: 'services' }, { type: 'contactInfo' }, { type: 'faqs'}, {type: 'socialMediaLinks'}] },
+      ],
+      validation: (Rule) => Rule.required().error('Content is required')
     }),
     defineField({
       name: "menuItem",
@@ -36,6 +27,7 @@ export default defineType({
       type: "reference",
       to: { type: "menuItem" },
       description: "Reference to the corresponding menu item.",
+      validation: (Rule) => Rule.required().error('Menu Item is required')
     }),
   ],
 });

@@ -67,6 +67,7 @@ export default defineType({
           },
         },
       ],
+      validation: (Rule) => Rule.required().error('Blog body text is required')
     }),
   ],
   preview: {

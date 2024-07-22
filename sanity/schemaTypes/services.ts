@@ -9,56 +9,20 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required().error('Title is required')
+    }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      validation: (Rule) => Rule.required().error('Slug is required')
     }),
     defineField({
       name: "servicesList",
       title: "Services List",
       type: "array",
-      of: [
-        {
-          type: "object",
-          name: "service",
-          title: "Service",
-          fields: [
-            defineField({
-              name: "title",
-              title: "Title",
-              type: "string",
-            }),
-            defineField({
-              name: "description",
-              title: "Description",
-              type: 'array',
-              of: [{type: 'block'}],
-            }),
-            defineField({
-              name: "serviceUrl",
-              title: "Service URL",
-              type: "url",
-              description: "This is the link to the individual service page.",
-            }),
-            defineField({
-              name: "cta",
-              title: "Call to Action",
-              type: "object",
-              fields: [
-                defineField({
-                  name: "label",
-                  title: "Label",
-                  type: "string",
-                }),
-                defineField({
-                  name: "ctaUrl",
-                  title: "URL",
-                  type: "url",
-                  description:
-                    "Where the user will be navigated to when they click the call to action.",
-                }),
-              ],
-            }),
-          ],
-        },
-      ],
+      of: [{ type: "reference", to: [{ type: "service" }] }], 
+      validation: (Rule) => Rule.required().error('Services are required')
     }),
   ],
 });

@@ -3,22 +3,25 @@ import { defineField, defineType } from "sanity";
 export default defineType({
   name: "heroSection",
   title: "Hero Section",
-  type: "object",
+  type: "document",
   fields: [
     defineField({
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required().error('Title is required')
     }),
     defineField({
       name: "heading",
       title: "Heading",
       type: "string",
+      validation: (Rule) => Rule.required().error('Heading is required')
     }),
     defineField({
       name: "subHeading",
       title: "Sub Heading",
-      type: "string",
+      type: "array",
+      of: [{type: 'block'}]
     }),
     defineField({
       name: "backgroundImage",
@@ -38,11 +41,32 @@ export default defineType({
           name: "label",
           title: "Label",
           type: "string",
+          validation: (Rule) => Rule.required().error('Primary call to action is required')
+        }),
+        defineField({
+          name: "linkType",
+          title: "Link Type",
+          type: "string",
+          options: {
+            list: [
+              { title: "Full URL", value: "fullUrl" },
+              { title: "Relative URL", value: "relativeUrl" },
+              { title: "Anchor Link", value: "anchorLink" },
+            ],
+            layout: "radio",
+          },
+          validation: (Rule) => Rule.required(),
+          description: `
+                The type of link:
+                - **Full URL**: A complete URL (e.g., https://example.com)
+                - **Relative URL**: A relative path (e.g., /services)
+                - **Anchor Link**: An anchor link within the page (e.g., #section).
+              `,
         }),
         defineField({
           name: "url",
           title: "URL",
-          type: "url",
+          type: "string",
           description:
             "Where the user will be navigated to when they click the primary CTA",
         }),
@@ -60,11 +84,31 @@ export default defineType({
           type: "string",
         }),
         defineField({
+          name: "linkType",
+          title: "Link Type",
+          type: "string",
+          options: {
+            list: [
+              { title: "Full URL", value: "fullUrl" },
+              { title: "Relative URL", value: "relativeUrl" },
+              { title: "Anchor Link", value: "anchorLink" },
+            ],
+            layout: "radio",
+          },
+          validation: (Rule) => Rule.required().error('Must select link type'),
+          description: `
+                The type of link:
+                - **Full URL**: A complete URL (e.g., https://example.com)
+                - **Relative URL**: A relative path (e.g., /services)
+                - **Anchor Link**: An anchor link within the page (e.g., #section).
+              `,
+        }),
+        defineField({
           name: "url",
           title: "URL",
-          type: "url",
+          type: "string",
           description:
-            "Where the user will be navigated to when they click the primary CTA",
+            "Where the user will be navigated to when they click the secondary CTA",
         }),
       ],
     }),

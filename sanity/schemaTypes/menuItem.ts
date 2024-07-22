@@ -10,56 +10,34 @@ export default defineType({
       title: "Label",
       type: "string",
       description: "The text to display for the link.",
+      validation: (Rule) => Rule.required().error('Label is required')
     }),
     defineField({
-      name: "linkType",
-      title: "Link Type",
+      name: "slugType",
+      title: "Slug Type",
       type: "string",
       options: {
         list: [
-          { title: "Full URL", value: "fullUrl" },
-          { title: "Relative URL", value: "relativeUrl" },
-          { title: "Anchor Link", value: "anchorLink" },
+          { title: "External", value: "externalUrl" },
+          { title: "Relative", value: "relativeUrl" },
+          { title: "Anchor", value: "anchorLink" },
         ],
         layout: "radio",
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().error('Must select slug type'),
       description: `
-            The type of link:
-            - **Full URL**: A complete URL (e.g., https://example.com)
-            - **Relative URL**: A relative path (e.g., /services)
-            - **Anchor Link**: An anchor link within the page (e.g., #section).
+            The type of slug:
+            - External: A complete URL (e.g., https://example.com) that navigates the user away from the website.
+            - Relative: Navigates the user to another page within the website (e.g., /services)
+            - Anchor Link: Navigates the user to another section on the current page (e.g., #section).
           `,
     }),
     defineField({
-      name: "url",
-      title: "URL",
-      type: "string",
-      description:
-        "The URL to navigate to when the link is clicked. Should match the selected link type.",
-      validation: (Rule) =>
-        Rule.custom((value, context) => {
-          const parent = context.parent as {
-            linkType?: string;
-          };
-
-          if (!value || !parent.linkType) {
-            return true;
-          }
-
-          const { linkType } = parent;
-
-          if (linkType === "fullUrl" && !value.startsWith("https://")) {
-            return 'Full URLs must start with "https://".';
-          }
-          if (linkType === "relativeUrl" && !value.startsWith("/")) {
-            return 'Relative URLs must start with "/".';
-          }
-          if (linkType === "anchorLink" && !value.startsWith("#")) {
-            return 'Anchor links must start with "#".';
-          }
-          return true;
-        }),
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      validation: (Rule) => Rule.required().error('Slug is required'),
+      description: 'If the slug is more than one word you should use dashes instead of spaces i.e. meet-the-founders'
     }),
     defineField({
       name: "isDropdown",

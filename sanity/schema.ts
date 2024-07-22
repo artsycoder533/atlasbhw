@@ -12,6 +12,9 @@ import officeHours from "./schemaTypes/officeHours";
 import blog from "./schemaTypes/blog";
 import category from "./schemaTypes/category";
 import staff from "./schemaTypes/staff";
+import faq from "./schemaTypes/faq";
+import jobListing from "./schemaTypes/jobListing";
+import service from "./schemaTypes/service";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,6 +30,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     officeHours,
     blog,
     category,
-    staff
+    staff,
+    faq,
+    jobListing,
+    service,
   ],
 };

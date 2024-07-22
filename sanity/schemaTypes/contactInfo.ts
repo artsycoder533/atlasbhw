@@ -10,6 +10,7 @@ export default defineType({
             name: 'companyName',
             title: 'Company Name',
             type: 'string',
+            validation: (Rule) => Rule.required().error('Company Name is required'),
         }),
         defineField({
             name: 'companyEmail',
@@ -32,7 +33,8 @@ export default defineType({
             name: 'address',
             title: 'Address',
             type: 'reference',
-            to: [{type: 'companyAddress'}]
+            to: [{type: 'companyAddress'}],
+            validation: (Rule) => Rule.required().error('Address is required')
         }),
         defineField({
             name: 'officeHours',
@@ -43,8 +45,8 @@ export default defineType({
         defineField({
             name: 'socialMediaLinks',
             title: 'Social Media Links',
-            type: 'reference',
-            to: [{type: 'socialMediaLinks'}],
+            type: 'array',
+            of: [{type: 'reference', to:  [{type: 'socialMediaLinks'}]}],
         })
     ],
 })

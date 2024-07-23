@@ -22,25 +22,40 @@ export const NAVIGATION_MENU_QUERY = groq`*[_type == "navigationMenu"]{
 }[0]`;
 
 export const FOOTER_MENU_QUERY = groq`*[_type == "footerMenu"]{
-  image{
-    asset->{
-      _id,
-      url
+    image,
+    title,
+    "footerLinks": footerLinks[]{
+      heading,
+      "sublinks": sublinks[]->{
+        _id,
+        label,
+        slugType,
+        slug {
+          current
+        },
+        isDropdown,
+        isCTA,
+        "dropdownLinks": dropdownLinks[]->{
+          _id,
+          label,
+          slugType,
+          slug {
+            current
+          },
+          isDropdown,
+          isCTA
+        }
+      }
+    },
+    copyrightInfo,
+    createdBy,
+    creatorWebsite,
+    "socialMedia": socialMedia {
+      title,
+      linkedIn,
+      instagram,
+      facebook,
+      twitter
     }
-  },
-  title,
-  footerLinks[]{
-    _key,
-    heading,
-    sublinks[]{
-      _key,
-      label,
-      linkType,
-      url
-    }
-  },
-  copyrightInfo,
-  createdBy,
-  creatorWebsite
-}
+  }[0]
 `;

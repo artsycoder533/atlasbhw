@@ -8,18 +8,26 @@ import Image from "next/image";
 import { getYear } from "@/utils/helper";
 import Link from "next/link";
 import Title from "./Title";
-import { FaHeart, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
-import { AiOutlineMail } from "react-icons/ai";
+import {
+  FaHeart,
+} from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import SocialMediaLinks from "./SocialMediaLinks";
 
 const urlFor = (source: any) =>
   imageUrlBuilder({ projectId, dataset }).image(source);
 
 type Link = {
-  _key: string;
   label: string;
-  linkType: string;
-  url: string;
+  slug: {
+    current: string;
+    type: string;
+  };
+  slugType: string;
+  isDropdown: boolean;
+  dropdownLinks: Link[];
+  isCTA: boolean;
+  _id: string;
 };
 
 type footerLink = {
@@ -27,14 +35,29 @@ type footerLink = {
   sublinks: Link[];
   _key: string;
 };
+
+interface SocialMediaLinks {
+  title: string;
+  linkedIn: string;
+  instagram: string;
+  facebook: string;
+  twitter: string;
+}
+
 type Props = {};
 
 const Footer = async (props: Props) => {
   const footerMenu = await sanityFetch<SanityDocument>({
     query: FOOTER_MENU_QUERY,
   });
-  const { copyrightInfo, createdBy, creatorWebsite, image, footerLinks } =
-    footerMenu[0];
+  const {
+    copyrightInfo,
+    createdBy,
+    creatorWebsite,
+    image,
+    footerLinks,
+    socialMedia,
+  } = footerMenu;
 
   return (
     <footer className="bg-primary-black text-primary-white py-6">
@@ -51,14 +74,18 @@ const Footer = async (props: Props) => {
         <div className="grid md:grid-cols-3 gap-8 lg:gap-24 xl:gap-24 py-3">
           {footerLinks.map((item: footerLink) => {
             const { heading, sublinks } = item;
-
             return (
-              <div key={item._key} className="">
+              <div key={item.heading} className="">
                 <Title title={heading} size="sm" />
                 <ul className="space-y-4">
                   {sublinks.map((sublink) => (
-                    <li key={sublink._key}>
-                      <Link href={sublink.url} className="hover:text-accent">{sublink.label}</Link>
+                    <li key={sublink._id}>
+                      <Link
+                        href={sublink.slug.current}
+                        className="hover:text-accent"
+                      >
+                        {sublink.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -71,11 +98,8 @@ const Footer = async (props: Props) => {
         <p className="text-sm">
           &copy; {getYear()} {copyrightInfo}
         </p>
-        <div className="flex justify-between text-2xl w-48 text-accent">
-          <FaLinkedin />
-          <MdEmail />
-          <FaPhoneAlt />
-        </div>
+        <SocialMediaLinks socialMedia={socialMedia}/>
+
       </div>
       <p className="text-sm flex gap-1 items-center justify-center">
         Made with <FaHeart className="text-red-700" /> by:

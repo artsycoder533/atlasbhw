@@ -13,7 +13,7 @@ type Props = {
 const SocialMediaLinks = ({ socialMedia }: Props) => {
   const { linkedIn, facebook, instagram, twitter } = socialMedia;
   return (
-    <div className="flex justify-between text-2xl w-48 text-accent border">
+    <div className="flex justify-between text-2xl w-48 text-accent">
       {facebook && (
         <FaFacebook
           className={`${!linkedIn && !instagram && !twitter ? "ml-auto" : ""}`}

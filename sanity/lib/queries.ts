@@ -59,3 +59,20 @@ export const FOOTER_MENU_QUERY = groq`*[_type == "footerMenu"]{
     }
   }[0]
 `;
+
+export const PAGE_QUERY = groq`*[_type == "pages" && menuItem->slug.current == $slug][0]{
+  title,
+  content[]->{
+    ...,
+    _type == 'heroSection' => @,
+    _type == 'services' => @,
+    _type == 'contactInfo' => @,
+    _type == 'faqs' => @,
+    _type == 'socialMediaLinks' => @
+  },
+  menuItem->{
+    label,
+    slug
+  }
+}
+`

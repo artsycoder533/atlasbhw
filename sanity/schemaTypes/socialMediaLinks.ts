@@ -34,5 +34,11 @@ export default defineType({
       type: "url",
       description: 'The full URL to your company Twitter Page'
     }),
+    defineField({
+      name: "tiktok",
+      title: "TikTok",
+      type: "url",
+      description: 'The full URL to your company TikTok Page'
+    }),
   ],
 });

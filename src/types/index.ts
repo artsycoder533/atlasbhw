@@ -52,6 +52,7 @@ export interface ServicesSection extends Section {
   }
 
 export type Service = {
+  _id: string;
     title: string;
       image: SanityAsset;
       slug: {

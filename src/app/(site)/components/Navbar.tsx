@@ -67,21 +67,10 @@ const Navbar = ({ navigationMenu }: Props) => {
             _id,
           } = link;
           const { current } = slug;
-
-          let href;
-          if (slugType === "relativeUrl") {
-            href = `/${current}`;
-          } else if (slugType === "externalUrl") {
-            href = current;
-          } else if (slugType === "anchorLink") {
-            href = `/#${current}`;
-          } else {
-            href = "";
-          }
           if (isDropdown && dropdownLinks.length > 0) {
             return (
               <li
-                key={label}
+                key={_id}
                 className="relative text-xl lg:text-base text-primary-text hover:text-accent"
               >
                 <button
@@ -96,21 +85,22 @@ const Navbar = ({ navigationMenu }: Props) => {
                   )}
                 </button>
                 <ul
-                  className={`lg:w-[250px] lg:absolute top-full left-0 mt-2 flex flex-col gap-2 lg:border bg-white text-primary-text rounded-md transition-all ${openDropdown === label ? "block" : "hidden"}`}
+                  className={`lg:w-[250px] lg:absolute top-full left-0 mt-2 flex flex-col gap-2 lg:border bg-white text-primary-text rounded-md transition-all ${
+                    openDropdown === label ? "block" : "hidden"
+                  }`}
                 >
                   {dropdownLinks?.map((dropdownLink) => {
-                    const { label, slug, slugType, _id } = dropdownLink;
-                    const { current } = slug;
-
-                    let href;
-                    if (slugType === "relativeUrl") {
-                      href = `/${current}`;
-                    } else if (slugType === "externalUrl") {
-                      href = current;
-                    } else if (slugType === "anchorLink") {
-                      href = `/#${current}`;
-                    } else {
-                      href = "";
+                    let href = "";
+                    switch (dropdownLink.slugType) {
+                      case "relativeUrl":
+                        href = `/${current}/${dropdownLink.slug.current}`;
+                        break;
+                      case "externalUrl":
+                        href = dropdownLink.slug.current;
+                        break;
+                      case "anchorLink":
+                        href = `/${current}/#${dropdownLink.slug.current}`;
+                        break;
                     }
                     return (
                       <li key={_id}>
@@ -118,7 +108,7 @@ const Navbar = ({ navigationMenu }: Props) => {
                           href={href}
                           className="flex px-4 py-2 hover:bg-gray-100 hover:text-accent"
                         >
-                          {label}
+                          {dropdownLink.label}
                         </Link>
                       </li>
                     );
@@ -130,8 +120,12 @@ const Navbar = ({ navigationMenu }: Props) => {
           return (
             <li key={_id}>
               <Link
-                className={`text-xl lg:text-base py-2 text-primary-text hover:text-accent ${isCTA ? "bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white" : "bg-none"}`}
-                href={href}
+                className={`text-xl lg:text-base py-2 text-primary-text hover:text-accent ${
+                  isCTA
+                    ? "bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white"
+                    : "bg-none"
+                }`}
+                href={slug.current}
                 scroll={false}
                 onClick={() => setOpen(false)}
               >

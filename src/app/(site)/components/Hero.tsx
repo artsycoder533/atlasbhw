@@ -4,47 +4,10 @@ import React from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import { projectId, dataset } from "../../../../sanity/env";
 import Image from "next/image";
+import { HeroSection } from "@/types";
 
 const urlFor = (source: any) =>
   imageUrlBuilder({ projectId, dataset }).image(source);
-
-interface Section {
-  _type: string;
-  _key: string;
-  // Add other common fields if necessary
-}
-
-interface HeroSection extends Section {
-  _type: "heroSection";
-  //   backgroundImage: {
-  //     _type: string;
-  //     asset
-  //     // Define fields here based on your backgroundImage object structure
-  //   };
-  backgroundImage: SanityAsset;
-  title: string;
-  heading: string;
-  secondaryCTA: {
-    _type: string;
-    label: string;
-    linkType: string;
-    url: string;
-    // Define fields here based on your secondaryCTA object structure
-  };
-  subHeading: Array<{
-    _type: string;
-    // Define fields here based on your subHeading object structure
-  }>;
-  primaryCTA: {
-    _type: string;
-    label: string;
-    linkType: string;
-    url: string;
-    // Define fields here based on your primaryCTA object structure
-  };
-  heroStyle: string;
-  announcementBanner: string;
-}
 
 type Props = {
   data: HeroSection;

@@ -42,6 +42,7 @@ export interface HeroSection extends Section {
       // Define fields here based on your primaryCTA object structure
     };
     heroStyle: string;
+    announcementBanner: string;
 }
 
 export interface ServicesSection extends Section {

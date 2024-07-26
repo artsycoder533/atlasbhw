@@ -15,7 +15,6 @@ const Services = ({ data }: Props) => {
       <div className="flex justify-center py-10">
         <div className="p-3 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-w-7xl">
           {data.servicesList.map((service) => {
-            console.log(service);
             return (
               <Link
                 key={service._id}

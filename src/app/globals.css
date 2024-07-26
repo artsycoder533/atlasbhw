@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hero-background {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+    background-size: cover;
+    background-position: center;
+  }

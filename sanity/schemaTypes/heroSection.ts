@@ -12,6 +12,11 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Title is required')
     }),
     defineField({
+      name: 'announcementBanner',
+      title: 'Announcement Banner',
+      type: 'string',
+    }),
+    defineField({
       name: "heading",
       title: "Heading",
       type: "string",
@@ -110,6 +115,22 @@ export default defineType({
           description:
             "Where the user will be navigated to when they click the secondary CTA",
         }),
+        defineField({
+          name:'heroStyle',
+          title: 'Hero style',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Full Hero', value: 'fullHero'},
+              { title: 'Half Hero', value: 'halfHero'},
+              { title: 'Quarter Hero', value: 'quarterHero'},
+              { title: 'Split Hero', value: 'splitHero'},
+              { title: 'Slanted Hero', value: 'slantedHero'}
+            ],
+            layout: 'radio'
+          },
+          validation: (Rule) => Rule.required().error('Hero Style is required')
+        })
       ],
     }),
   ],

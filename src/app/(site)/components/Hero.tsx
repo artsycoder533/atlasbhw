@@ -5,6 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { projectId, dataset } from "../../../../sanity/env";
 import Image from "next/image";
 import { HeroSection } from "@/types";
+import AnnouncementBanner from "./AnnouncementBanner";
 
 const urlFor = (source: any) =>
   imageUrlBuilder({ projectId, dataset }).image(source);
@@ -26,13 +27,11 @@ const Hero = ({ data }: Props) => {
 
   return (
     <section
-      className="relative min-h-[85vh] flex items-center overflow-hidden"
+      className="flex relative min-h-[85vh] items-center overflow-hidden"
       id="hero"
     >
       {/* announcement */}
-      {announcementBanner && <div className="border absolute top-16 left-1/2 transform -translate-x-1/2 font-bold bg-secondary-accent text-white font-xl z-50 w-96 p-4">
-        <p>{announcementBanner}</p>
-      </div>}
+    
 
       <div className="absolute inset-0 z-10">
         <Image
@@ -44,6 +43,7 @@ const Hero = ({ data }: Props) => {
       </div>
       <div className="absolute inset-0 bg-black opacity-70 z-20"></div>
       <div className="relative z-30 flex flex-col gap-8 p-4 max-w-7xl w-[90vw] mx-auto">
+      <AnnouncementBanner text={announcementBanner} />
         <h1 className="text-6xl text-white">{heading}</h1>
         <PortableText
           value={subHeading}

@@ -1,18 +1,27 @@
-import React from 'react'
+import React from "react";
 
 type Props = {
-    title: string;
-    size: 'sm' | 'md' | 'lg';
-}
+  title: string;
+  size: "sm" | "lg";
+};
 
-const Title = ({title, size}: Props) => {
+const Title = ({ title, size }: Props) => {
   return (
-    <>
-    {size === 'sm' && <p className='text-primary-gray uppercase relative mb-4 font-bold tracking-wide text-lg'>{title} <span className="absolute left-0 -bottom-1 bg-accent h-[3px] w-10"/></p>}
-    {size === 'md' && <h2>{title}</h2>}
-    {size === 'lg' && <p>{title}</p>}
-  </>
-  )
-}
+    <div className="flex justify-center">
+      {size === "sm" && (
+        <p className="text-primary-gray uppercase relative mb-4 font-bold tracking-wide text-lg">
+          {title}{" "}
+          <span className="absolute left-0 -bottom-1 bg-accent h-[3px] w-10" />
+        </p>
+      )}
+      {size === "lg" && (
+        <h2 className="relative inline-block text-center text-primary-brown font-bold tracking-wide text-4xl mb-4">
+          {title}
+          <span className="absolute bottom-0 left-0 bg-accent h-[3px] w-24"></span>
+        </h2>
+      )}
+    </div>
+  );
+};
 
-export default Title
+export default Title;

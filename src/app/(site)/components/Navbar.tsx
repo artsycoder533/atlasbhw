@@ -5,25 +5,9 @@ import Image from "next/image";
 import RotatingHamburger from "./RotatingHamburger";
 import { useEffect } from "react";
 import { SanityDocument } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
-import { projectId, dataset } from "../../../../sanity/env";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-
-const urlFor = (source: any) =>
-  imageUrlBuilder({ projectId, dataset }).image(source);
-
-type Link = {
-  label: string;
-  slug: {
-    current: string;
-    type: string;
-  };
-  slugType: string;
-  isDropdown: boolean;
-  dropdownLinks: Link[];
-  isCTA: boolean;
-  _id: string;
-};
+import { MenuItem } from "@/types";
+import { urlFor } from "@/utils/helper";
 
 type Props = {
   navigationMenu: SanityDocument;
@@ -72,7 +56,7 @@ const Navbar = ({ navigationMenu }: Props) => {
           (open ? "translate-x-0" : "translate-x-[100vh] lg:translate-x-0")
         }
       >
-        {links.map((link: Link) => {
+        {links.map((link: MenuItem) => {
           const {
             label,
             isDropdown,

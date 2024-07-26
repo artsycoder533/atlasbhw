@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import roboto from "./fonts.ts/Roboto";
+import montserratAlternates from "./fonts.ts/Montserrat_Alternatives";
 import "../globals.css";
 import Header from "./components/Header";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import Footer from "./components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Atlas Behavioral Health + Wellness",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`flex flex-col min-h-screen ${inter.className}`}>
+      <body className={`flex flex-col min-h-screen ${roboto.className}`}>
         {draftMode().isEnabled && (
           <div>
             <a className="p-4 bg-blue-300 block" href="/api/disable-draft">

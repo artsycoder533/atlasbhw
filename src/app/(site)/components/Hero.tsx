@@ -39,7 +39,7 @@ const Hero = ({ data }: Props) => {
         />
       </div>
       <div className="absolute inset-0 bg-black opacity-70 z-20"></div>
-      <div className="relative z-30 flex flex-col gap-8 p-4 max-w-7xl w-[90vw] mx-auto">
+      <div className="relative z-20 flex flex-col gap-8 p-4 max-w-7xl w-[90vw] mx-auto">
      {announcementBanner ? <AnnouncementBanner text={announcementBanner} /> : null}
         <h1 className="text-6xl text-white">{heading}</h1>
         <PortableText
@@ -63,7 +63,7 @@ const Hero = ({ data }: Props) => {
           </a>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-30">
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"

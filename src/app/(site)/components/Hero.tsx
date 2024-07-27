@@ -30,9 +30,6 @@ const Hero = ({ data }: Props) => {
       className="flex relative min-h-[85vh] items-center overflow-hidden"
       id="hero"
     >
-      {/* announcement */}
-    
-
       <div className="absolute inset-0 z-10">
         <Image
           src={urlFor(backgroundImage).quality(90).url()}
@@ -43,7 +40,7 @@ const Hero = ({ data }: Props) => {
       </div>
       <div className="absolute inset-0 bg-black opacity-70 z-20"></div>
       <div className="relative z-30 flex flex-col gap-8 p-4 max-w-7xl w-[90vw] mx-auto">
-      <AnnouncementBanner text={announcementBanner} />
+     {announcementBanner ? <AnnouncementBanner text={announcementBanner} /> : null}
         <h1 className="text-6xl text-white">{heading}</h1>
         <PortableText
           value={subHeading}

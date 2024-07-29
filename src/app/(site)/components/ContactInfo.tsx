@@ -30,13 +30,13 @@ const ContactInfo = ({ data }: Props) => {
   console.log("data ====>", data);
 
   return (
-    <section className="py-10 bg-primary-brown">
-      <div className="flex max-w-screen-2xl mx-auto w-[90vw]">
-        <div className="w-1/3 flex items-center">
+    <section className="py-16 bg-primary-brown">
+      <div className="flex flex-col gap-6 md:gap-0 md:flex-row max-w-screen-2xl mx-auto w-[90vw]">
+        <div className="w-1/2 lg:w-1/3">
           <Title title="Get In Touch" size="lg" altColor />
         </div>
-        <div className="w-2/3">
-          <div className="grid lg:grid-cols-2 gap-6">
+        <div className="md:w-1/2 lg:w-2/3">
+          <div className="grid lg:grid-cols-2 gap-10">
             <div className="bg-gray-100 rounded-xl p-6">
               <h3 className="flex items-center gap-2 mb-3">
                 <MdLocationPin /> Address
@@ -67,7 +67,7 @@ const ContactInfo = ({ data }: Props) => {
               <p>Email: {companyEmail}</p>
             </div>
             <div className="bg-gray-100 rounded-xl p-6 flex flex-col justify-between">
-              <h3 className="font-semibold flex">Follow Us:</h3>
+              <h3 className="font-semibold flex mb-3">Follow Us:</h3>
               <ul className="flex justify-around items-center">
                 {socialMediaLinks.map((socialMedia, index) => (
                   <React.Fragment key={index}>

@@ -10,7 +10,7 @@ type Props = {
 
 const Services = ({ data }: Props) => {
   return (
-    <section>
+    <section className="py-16">
       <div className="flex justify-center">
       <Title size="lg" title={data.title} />
       </div>
@@ -25,7 +25,7 @@ const Services = ({ data }: Props) => {
               >
                 <div className="w-full h-full relative rounded-xl">
                   <Image
-                    src={urlFor(service.image).quality(100).url()}
+                    src={urlFor(service.image).quality(90).url()}
                     alt={service.title}
                     fill
                     className="object-cover rounded-xl"

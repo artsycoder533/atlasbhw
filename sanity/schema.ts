@@ -15,6 +15,8 @@ import staff from "./schemaTypes/staff";
 import faq from "./schemaTypes/faq";
 import jobListing from "./schemaTypes/jobListing";
 import service from "./schemaTypes/service";
+import about from "./schemaTypes/about";
+import staffGroup from "./schemaTypes/staffGroup";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -34,5 +36,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faq,
     jobListing,
     service,
+    about,
+    staffGroup
   ],
 };

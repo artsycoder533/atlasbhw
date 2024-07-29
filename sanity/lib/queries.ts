@@ -81,7 +81,35 @@ export const PAGE_QUERY = groq`
         }
       }
     },
-    _type == 'contactInfo' => @,
+    _type == 'contactInfo' => {
+      companyName,
+      companyEmail,
+      phoneNumber,
+      fax,
+      address->{
+        streetAddress,
+        addressLine2,
+        city,
+        state,
+        postalCode
+      },
+      officeHours->{
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+        sunday
+      },
+      socialMediaLinks[]->{
+        linkedIn,
+        instagram,
+        facebook,
+        twitter,
+        tiktok
+      }
+    },
     _type == 'faqs' => @,
     _type == 'socialMediaLinks' => @
   },

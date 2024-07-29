@@ -86,9 +86,35 @@ export type PageSection =
   | FaqsSection
   | SocialMediaLinksSection;
 
-  interface ContactInfoSection extends Section {
+  export interface ContactInfoSection extends Section {
     _type: "contactInfo";
-    // Add specific fields for contactInfo
+    companyName: string;
+    companyEmail: string;
+    phoneNumber: string;
+    fax: string;
+    address: {
+      streetAddress: string;
+      addressLine2: string;
+      city: string;
+      state: string;
+      postalCode: string;
+    }
+    officeHours: {
+      monday: string;
+      tuesday: string;
+      wednesday: string;
+      thursday: string;
+      friday: string;
+      saturday: string;
+      sunday: string;
+    }
+    socialMediaLinks: {
+      linkedIn: string;
+      facebook: string;
+      instagram: string;
+      twitter: string;
+      tiktok: string;
+    }[]
   }
   
   interface FaqsSection extends Section {
@@ -98,7 +124,10 @@ export type PageSection =
   
   interface SocialMediaLinksSection extends Section {
     _type: "socialMediaLinks";
-    // Add specific fields for socialMediaLinks
+    linkedIn: string;
+    instagram: string;
+    twitter: string;
+    tiktok: string;
   }
   
  export type PageData = {

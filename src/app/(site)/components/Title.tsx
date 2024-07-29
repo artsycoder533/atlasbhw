@@ -3,11 +3,12 @@ import React from "react";
 type Props = {
   title: string;
   size: "sm" | "lg";
+  altColor?: boolean;
 };
 
-const Title = ({ title, size }: Props) => {
+const Title = ({ title, size, altColor }: Props) => {
   return (
-    <div className="flex justify-center">
+    <div className="flex">
       {size === "sm" && (
         <p className="text-primary-gray uppercase relative mb-4 font-bold tracking-wide text-lg">
           {title}{" "}
@@ -15,7 +16,7 @@ const Title = ({ title, size }: Props) => {
         </p>
       )}
       {size === "lg" && (
-        <h2 className="relative inline-block text-center text-primary-brown font-bold tracking-wide text-4xl mb-4">
+        <h2 className={`relative inline-block text-center ${altColor ? 'text-white' : 'text-primary-brown'} font-bold tracking-wide text-4xl mb-41`}>
           {title}
           <span className="absolute bottom-0 left-0 bg-accent h-[3px] w-24"></span>
         </h2>

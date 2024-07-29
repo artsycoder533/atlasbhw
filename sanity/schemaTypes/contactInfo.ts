@@ -7,6 +7,12 @@ export default defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'title',
+            title: 'Title',
+            type: 'string',
+            validation: (Rule) => Rule.required().error('Title is required')
+        }),
+        defineField({
             name: 'companyName',
             title: 'Company Name',
             type: 'string',

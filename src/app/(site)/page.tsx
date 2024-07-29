@@ -3,6 +3,7 @@ import { PAGE_QUERY } from "../../../sanity/lib/queries";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import { PageData } from "@/types";
+import ContactInfo from "./components/ContactInfo";
 
 const Home = async () => {
   const pageData = await sanityFetch<PageData>({
@@ -14,6 +15,8 @@ const Home = async () => {
     return <div className="mt-32">Page not found</div>;
   }
 
+  // console.log('pageData content ====>', pageData)
+
   return (
     <>
   
@@ -24,8 +27,8 @@ const Home = async () => {
             return <Hero key={index} data={section} />;
           case 'services':
             return <Services key={index} data={section} />;
-          // case 'contactInfo':
-          //   return <ContactInfo key={index} data={section} />;
+          case 'contactInfo':
+            return <ContactInfo key={index} data={section} />;
           // case 'faqs':
           //   return <Faqs key={index} data={section} />;
           // case 'socialMediaLinks':

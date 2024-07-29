@@ -1,11 +1,11 @@
 import { PortableText } from "@portabletext/react";
-import { SanityAsset } from "@sanity/image-url/lib/types/types";
 import React from "react";
 import imageUrlBuilder from "@sanity/image-url";
 import { projectId, dataset } from "../../../../sanity/env";
 import Image from "next/image";
 import { HeroSection } from "@/types";
 import AnnouncementBanner from "./AnnouncementBanner";
+import montserratAlternates from "../fonts.ts/Montserrat_Alternatives";
 
 const urlFor = (source: any) =>
   imageUrlBuilder({ projectId, dataset }).image(source);
@@ -27,7 +27,7 @@ const Hero = ({ data }: Props) => {
 
   return (
     <section
-      className="flex relative min-h-[85vh] items-center overflow-hidden"
+      className="flex relative min-h-[70vh] items-center overflow-hidden rounded-br-full bg-accent"
       id="hero"
     >
       <div className="absolute inset-0 z-10">
@@ -41,7 +41,7 @@ const Hero = ({ data }: Props) => {
       <div className="absolute inset-0 bg-black opacity-70 z-20"></div>
       <div className="relative z-20 flex flex-col gap-8 p-4 max-w-7xl w-[90vw] mx-auto">
      {announcementBanner ? <AnnouncementBanner text={announcementBanner} /> : null}
-        <h1 className="text-6xl text-white">{heading}</h1>
+        <h1 className="text-6xl text-white font">{heading}</h1>
         <PortableText
           value={subHeading}
           components={{
@@ -63,7 +63,7 @@ const Hero = ({ data }: Props) => {
           </a>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
+      {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ const Hero = ({ data }: Props) => {
         >
           <path d="M1200 0L0 120 1200 120 1200 0z" fill="#fff"></path>
         </svg>
-      </div>
+      </div> */}
     </section>
   );
 };

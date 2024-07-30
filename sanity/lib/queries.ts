@@ -110,10 +110,10 @@ export const PAGE_QUERY = groq`
         tiktok
       }
     },
-    _type == 'partialHero' => {
-      heading
+    _type == 'heroPartial' => {
+      heading,
       backgroundImage
-    }
+    },
      _type == 'faqs' => @,
     _type == 'socialMediaLinks' => @
   },
@@ -122,6 +122,4 @@ export const PAGE_QUERY = groq`
     slug
   }
 }
-`
-
-
+`;

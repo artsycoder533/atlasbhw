@@ -134,3 +134,9 @@ export type PageSection =
     title: string;
     content: PageSection[];
   }
+
+export type HeroPartial = {
+  _type: 'heroPartial'
+  heading: string;
+  backgroundImage: SanityAsset;
+}

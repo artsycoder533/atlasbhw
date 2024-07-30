@@ -17,7 +17,7 @@ export default defineType({
       title: "Content",
       type: "array",
       of: [
-        { type: "reference", to: [{ type: "heroSection" }, { type: 'services' }, { type: 'contactInfo' }, { type: 'faqs'}, {type: 'socialMediaLinks'}, {type: 'staffGroup'}, {type: 'about'}, {type: 'partialHero'}] },
+        { type: "reference", to: [{ type: "heroSection" }, { type: 'services' }, { type: 'contactInfo' }, { type: 'faqs'}, {type: 'socialMediaLinks'}, {type: 'staffGroup'}, {type: 'about'}, {type: 'heroPartial'}] },
       ],
       validation: (Rule) => Rule.required().error('Content is required')
     }),

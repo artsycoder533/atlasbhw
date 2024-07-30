@@ -110,7 +110,11 @@ export const PAGE_QUERY = groq`
         tiktok
       }
     },
-    _type == 'faqs' => @,
+    _type == 'partialHero' => {
+      heading
+      backgroundImage
+    }
+     _type == 'faqs' => @,
     _type == 'socialMediaLinks' => @
   },
   menuItem->{

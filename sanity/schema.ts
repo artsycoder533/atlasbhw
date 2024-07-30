@@ -17,6 +17,7 @@ import jobListing from "./schemaTypes/jobListing";
 import service from "./schemaTypes/service";
 import about from "./schemaTypes/about";
 import staffGroup from "./schemaTypes/staffGroup";
+import partialHero from "./schemaTypes/partialHero";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -37,6 +38,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     jobListing,
     service,
     about,
-    staffGroup
+    staffGroup, 
+    partialHero
   ],
 };

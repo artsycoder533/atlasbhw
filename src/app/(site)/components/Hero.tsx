@@ -6,6 +6,7 @@ import Image from "next/image";
 import { HeroSection } from "@/types";
 import AnnouncementBanner from "./AnnouncementBanner";
 import montserratAlternates from "../fonts.ts/Montserrat_Alternatives";
+import Title from "./Title";
 
 const urlFor = (source: any) =>
   imageUrlBuilder({ projectId, dataset }).image(source);
@@ -63,17 +64,6 @@ const Hero = ({ data }: Props) => {
           </a>
         </div>
       </div>
-      {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block h-[200px] w-full"
-        >
-          <path d="M1200 0L0 120 1200 120 1200 0z" fill="#fff"></path>
-        </svg>
-      </div> */}
     </section>
   );
 };

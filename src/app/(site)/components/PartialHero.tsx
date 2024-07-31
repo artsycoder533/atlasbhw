@@ -9,7 +9,6 @@ type Props = {
 };
 
 const PartialHero = ({ data }: Props) => {
-  console.log("data form about page ====>", data);
   return (
     <section className="relative flex justify-center items-center h-72 w-full border">
       <div className="absolute inset-0">

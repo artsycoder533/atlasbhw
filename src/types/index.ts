@@ -140,3 +140,33 @@ export type HeroPartial = {
   heading: string;
   backgroundImage: SanityAsset;
 }
+
+export type About = {
+  _type: 'about'
+  missionStatement: {
+    heading: string;
+    bodyText: Array<{
+      _type: 'block';
+      children: Array<{
+        _type: 'span';
+        text: string;
+        marks: string[];
+      }>;
+      markDefs: any[];
+      style: string;
+    }>;
+  }
+  teachingSiteStatement: {
+    heading: string;
+    bodyText: Array<{
+      _type: 'block';
+      children: Array<{
+        _type: 'span';
+        text: string;
+        marks: string[];
+      }>;
+      markDefs: any[];
+      style: string;
+    }>;
+  }
+}

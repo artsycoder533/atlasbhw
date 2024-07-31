@@ -114,6 +114,16 @@ export const PAGE_QUERY = groq`
       heading,
       backgroundImage
     },
+    _type == 'about' => {
+      missionStatement{
+        heading,
+        bodyText
+      },
+      teachingSiteStatment{
+        heading,
+        bodyText
+      }
+    },
      _type == 'faqs' => @,
     _type == 'socialMediaLinks' => @
   },

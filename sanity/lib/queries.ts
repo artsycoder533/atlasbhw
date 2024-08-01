@@ -124,6 +124,20 @@ export const PAGE_QUERY = groq`
         bodyText
       }
     },
+    _type == 'staffGroup' => {
+      title,
+      staffMembers[]-> {
+        name,
+        headshot,
+        credentials,
+        role,
+        specialties,
+        ehrLink {
+          label,
+          url
+        }
+      }
+    },
      _type == 'faqs' => @,
     _type == 'socialMediaLinks' => @
   },

@@ -170,3 +170,32 @@ export type About = {
     }>;
   }
 }
+
+export type StaffGroup = {
+  _type: 'staffGroup'
+  title: string;
+  staffMembers: Staff[];
+}
+
+export type Staff = {
+  _id: string;
+  name: string;
+  headshot: SanityAsset;
+  credentials: string;
+  role: string;
+  // bio: Array<{
+  //   _type: 'block';
+  //   children: Array<{
+  //     _type: 'span';
+  //     text: string;
+  //     marks: string[];
+  //   }>;
+  //   markDefs: any[];
+  //   style: string;
+  // }>;
+  specialties: string[];
+  ehrLink: {
+    label: string;
+    url: string;
+  }
+}

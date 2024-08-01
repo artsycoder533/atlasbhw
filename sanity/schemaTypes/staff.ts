@@ -40,13 +40,13 @@ export default defineType({
         Rule.required().error("Role selection is required."),
     }),
 
-    defineField({
-      name: "bio",
-      title: "Bio",
-      type: "array",
-      of: [{ type: "block" }],
-      validation: (Rule) => Rule.required().error('Bio is required')
-    }),
+    // defineField({
+    //   name: "bio",
+    //   title: "Bio",
+    //   type: "array",
+    //   of: [{ type: "block" }],
+    //   validation: (Rule) => Rule.required().error('Bio is required')
+    // }),
     // defineField({
     //   name: 'staffCTA',
     //   title: 'Staff Call To Action',
@@ -55,6 +55,13 @@ export default defineType({
     //   description: 'Select the menu item that the CTA will link to',
     //   validation: (Rule) => Rule.required().error('Menu Item is required'),
     // }),
+    defineField({
+      name: "specialties",
+      title: "Specialties",
+      type: "array",
+      of: [{ type: "string" }],
+      validation: (Rule) => Rule.unique().error('Specialties should be unique')
+    }),
     defineField({
       name: 'ehrLink',
       title: 'EHR Link',

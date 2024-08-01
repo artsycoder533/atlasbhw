@@ -6,6 +6,7 @@ import Services from "../components/Services";
 import Title from "../components/Title";
 import PartialHero from "../components/PartialHero";
 import ContentSection from "../components/ContentSection";
+import StaffMembers from "../components/StaffMembers";
 
 interface PageProps {
     params: {
@@ -20,7 +21,7 @@ const Page = async ({params}: PageProps) => {
         params: {slug: params.slug}
     })
 
-    console.log('pageData =====>', pageData.content)
+    console.log('pageData =====>', pageData)
 
     if(!pageData){
         return <div className="mt-48">Page not found</div>
@@ -29,7 +30,7 @@ const Page = async ({params}: PageProps) => {
     return (
         <div>
           <Title size="lg" title={pageData.title} />
-          {pageData.content.map((section: any, index: number) => {
+          {pageData.content.map((section: any) => {
             console.log('section type ===>', section)
             switch (section._type) {
               case 'heroSection':
@@ -40,6 +41,8 @@ const Page = async ({params}: PageProps) => {
                 return <PartialHero key={section._id} data={section} />;
               case 'about':
                 return <ContentSection key={section._id} data={section} />
+              case 'staffGroup':
+                return <StaffMembers key={section._id} data={section} />
               // case 'contactInfo':
               //   return <ContactInfo key={index} data={section} />;
               // case 'faqs':

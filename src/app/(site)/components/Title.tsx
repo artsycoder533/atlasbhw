@@ -8,7 +8,7 @@ type Props = {
 
 const Title = ({ title, size, altColor }: Props) => {
   return (
-    <div className="flex">
+    <div className="flex mt-4">
       {size === "sm" && (
         <p className="text-primary-gray uppercase relative mb-4 font-bold tracking-wide text-lg">
           {title}{" "}

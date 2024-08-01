@@ -15,23 +15,19 @@ interface PageProps {
 }
 
 const Page = async ({params}: PageProps) => {
-    // console.log('params.slug===>', params.slug)
     const pageData = await sanityFetch<SanityDocument>({
         query: PAGE_QUERY,
         params: {slug: params.slug}
     })
 
-    console.log('pageData =====>', pageData)
-
     if(!pageData){
-        return <div className="mt-48">Page not found</div>
+      return <div className="mt-48">Page not found</div>
     }
 
     return (
-        <div>
+        <div className="flex flex-col gap-4">
           <Title size="lg" title={pageData.title} />
           {pageData.content.map((section: any) => {
-            console.log('section type ===>', section)
             switch (section._type) {
               case 'heroSection':
                 return <Hero key={section._id} data={section} />;

@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth scroll-pt-20">
       <body className={`flex flex-col min-h-screen ${roboto.className}`}>
         {draftMode().isEnabled && (
           <div>

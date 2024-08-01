@@ -23,7 +23,7 @@ const StaffMember = ({ staff }: Props) => {
       <div className="flex flex-col basis-1/2">
         <h3 className="text-2xl font-medium mb-2">{name}</h3>
         <p className="font-light text-gray-600 capitalize text-lg">{`${role}, ${credentials}`}</p>
-        <p className="mt-8 mb-1 font-medium">Specialties:</p>
+        <p className="mt-8 mb-2 font-medium">Specialties:</p>
         <ul className=" flex flex-wrap gap-2">
           {specialties.map((specialty) => (
             <li key={specialty} className="py-1 px-3 bg-gray-100 rounded-xl text-sm">{specialty}</li>

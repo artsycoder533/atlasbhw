@@ -9,7 +9,6 @@ type Props = {
 
 const StaffMembers = ({data}: Props) => {
     const {title, staffMembers} = data;
-    console.log('data ====>', data)
   return (
     <section className="max-w-7xl w-[90vw] mx-auto py-12 mb-12" id="staff">
         <div className="flex justify-center mb-6">

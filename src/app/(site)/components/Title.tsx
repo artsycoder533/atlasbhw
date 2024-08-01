@@ -18,7 +18,7 @@ const Title = ({ title, size, altColor }: Props) => {
       {size === "lg" && (
         <h2 className={`relative inline-block text-center ${altColor ? 'text-white' : 'text-primary-brown'} font-bold tracking-wide text-5xl mb-4`}>
           {title}
-          <span className="absolute bottom-0 left-0 bg-accent h-[3px] w-24"></span>
+          <span className="absolute bottom-0 left-0 bg-accent h-[3px] w-36"></span>
         </h2>
       )}
     </div>

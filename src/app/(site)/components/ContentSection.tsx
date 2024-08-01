@@ -8,7 +8,7 @@ type Props = {
 
 const ContentSection = ({ data }: Props) => {
   const { missionStatement, teachingSiteStatement } = data;
-  console.log("data ====>", data);
+
   return (
     <div className="space-y-12 py-10">
       <section id="our-mission" className=" flex items-center max-w-7xl w-[90vw] p-10 rounded-2xl bg-primary-brown/25 mx-auto">

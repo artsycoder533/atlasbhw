@@ -147,3 +147,16 @@ export const PAGE_QUERY = groq`
   }
 }
 `;
+
+export const SERVICE_QUERY = groq`
+  *[_type == "service" && slug.current == $slug][0]{
+    title,
+    image,
+    slug,
+    description,
+    cta {
+      label,
+      url
+    }
+  }
+`;

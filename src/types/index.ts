@@ -193,3 +193,22 @@ export type Staff = {
     url: string;
   };
 };
+
+export type FAQS = {
+  _type: 'faqs'
+  _id: string;
+  title: string;
+  faqsList: {
+    question: string;
+    answer: Array<{
+      _type: "block";
+      children: Array<{
+        _type: "span";
+        text: string;
+        marks: string[];
+      }>;
+      markDefs: any[];
+      style: string;
+    }>;
+  }[];
+}

@@ -138,7 +138,13 @@ export const PAGE_QUERY = groq`
         }
       }
     },
-     _type == 'faqs' => @,
+     _type == 'faqs' => {
+      title,
+      faqsList[] {
+        question,
+        answer
+      }
+    },
     _type == 'socialMediaLinks' => @
   },
   menuItem->{
@@ -166,4 +172,3 @@ export const SERVICE_QUERY = groq`
     }
   }
 `;
-

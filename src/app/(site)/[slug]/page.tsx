@@ -7,6 +7,7 @@ import Title from "../components/Title";
 import PartialHero from "../components/PartialHero";
 import ContentSection from "../components/ContentSection";
 import StaffMembers from "../components/StaffMembers";
+import FaqAccordion from "../components/FaqAccordion";
 
 interface PageProps {
     params: {
@@ -15,10 +16,13 @@ interface PageProps {
 }
 
 const Page = async ({params}: PageProps) => {
+  console.log('params.slug ====>', params.slug)
     const pageData = await sanityFetch<SanityDocument>({
         query: PAGE_QUERY,
         params: {slug: params.slug}
     })
+
+    console.log('pageData ===>', pageData)
 
     if(!pageData){
       return <div className="mt-48">Page not found</div>
@@ -39,10 +43,8 @@ const Page = async ({params}: PageProps) => {
                 return <ContentSection key={section._id} data={section} />
               case 'staffGroup':
                 return <StaffMembers key={section._id} data={section} />
-              // case 'contactInfo':
-              //   return <ContactInfo key={index} data={section} />;
-              // case 'faqs':
-              //   return <Faqs key={index} data={section} />;
+              case 'faqs':
+                return <FaqAccordion key={section._id} data={section} />;
               // case 'socialMediaLinks':
               //   return <SocialMediaLinks key={index} data={section} />;
               default:

@@ -106,6 +106,7 @@ const Navbar = ({ navigationMenu }: Props) => {
                       <li key={dropdownLink._id}>
                         <Link
                           href={href}
+                          onClick={() => toggleDropdown('')}
                           className="flex px-4 py-2 hover:bg-gray-100 hover:text-accent"
                         >
                           {dropdownLink.label}

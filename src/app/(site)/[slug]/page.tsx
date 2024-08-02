@@ -25,7 +25,7 @@ const Page = async ({params}: PageProps) => {
     }
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="">
           <Title size="lg" title={pageData.title} />
           {pageData.content.map((section: any) => {
             switch (section._type) {

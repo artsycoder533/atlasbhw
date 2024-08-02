@@ -55,5 +55,26 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: "ehrLink",
+      title: "EHR Link",
+      type: "object",
+      fields: [
+        defineField({
+          name: "label",
+          title: "EHR Link Label Text",
+          type: "string",
+          validation: (Rule) =>
+            Rule.required().error("Label is required."),
+        }),
+        defineField({
+          name: "url",
+          title: "Link to Appointment Booking Page",
+          type: "url",
+          validation: (Rule) =>
+            Rule.required().error("URL is required."),
+        }),
+      ],
+    }),
   ],
 });

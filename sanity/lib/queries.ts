@@ -155,8 +155,15 @@ export const SERVICE_QUERY = groq`
     slug,
     description,
     cta {
+      menuItem-> {
+        label,
+        url
+      }
+    },
+    ehrLink {
       label,
       url
     }
   }
 `;
+

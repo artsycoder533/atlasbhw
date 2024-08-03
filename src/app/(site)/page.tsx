@@ -20,11 +20,11 @@ const Home = async () => {
       {pageData.content.map((section: any, index: number) => {
         switch (section._type) {
           case "heroSection":
-            return <Hero key={index} data={section} />;
+            return <Hero key={section._id} data={section} />;
           case "services":
-            return <Services key={index} data={section} />;
+            return <Services key={section._id} data={section} />;
           case "contactInfo":
-            return <ContactInfo key={index} data={section} />;
+            return <ContactInfo key={section._id} data={section} />;
           default:
             return null;
         }

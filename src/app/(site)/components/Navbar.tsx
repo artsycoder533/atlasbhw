@@ -1,9 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import RotatingHamburger from "./RotatingHamburger";
-import { useEffect } from "react";
 import { SanityDocument } from "next-sanity";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 import { MenuItem } from "@/types";
@@ -33,6 +32,22 @@ const Navbar = ({ navigationMenu }: Props) => {
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown((prev) => (prev === label ? null : label));
+  };
+
+  const constructHref = (slug: string, slugType: string, parentSlug: string | null = null) => {
+    let href = "";
+    switch (slugType) {
+      case "relativeUrl":
+        href = parentSlug ? `/${parentSlug}/${slug}` : `/${slug}`;
+        break;
+      case "externalUrl":
+        href = slug;
+        break;
+      case "anchorLink":
+        href = parentSlug ? `/${parentSlug}/#${slug}` : `#${slug}`;
+        break;
+    }
+    return href;
   };
 
   return (
@@ -67,6 +82,7 @@ const Navbar = ({ navigationMenu }: Props) => {
             _id,
           } = link;
           const { current } = slug;
+
           if (isDropdown && dropdownLinks.length > 0) {
             return (
               <li
@@ -90,22 +106,15 @@ const Navbar = ({ navigationMenu }: Props) => {
                   }`}
                 >
                   {dropdownLinks?.map((dropdownLink) => {
-                    let href = "";
-                    switch (dropdownLink.slugType) {
-                      case "relativeUrl":
-                        href = `/${current}/${dropdownLink.slug.current}`;
-                        break;
-                      case "externalUrl":
-                        href = dropdownLink.slug.current;
-                        break;
-                      case "anchorLink":
-                        href = `/${current}/#${dropdownLink.slug.current}`;
-                        break;
-                    }
+                    const dropdownHref = constructHref(
+                      dropdownLink.slug.current,
+                      dropdownLink.slugType,
+                      current
+                    );
                     return (
                       <li key={dropdownLink._id}>
                         <Link
-                          href={href}
+                          href={dropdownHref}
                           onClick={() => toggleDropdown('')}
                           className="flex px-4 py-2 hover:bg-gray-100 hover:text-accent"
                         >
@@ -118,6 +127,9 @@ const Navbar = ({ navigationMenu }: Props) => {
               </li>
             );
           }
+
+          const href = constructHref(current, slugType);
+
           return (
             <li key={_id}>
               <Link
@@ -126,7 +138,7 @@ const Navbar = ({ navigationMenu }: Props) => {
                     ? "bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white"
                     : "bg-none"
                 }`}
-                href={slug.current}
+                href={href}
                 scroll={false}
                 onClick={() => setOpen(false)}
               >
@@ -141,3 +153,4 @@ const Navbar = ({ navigationMenu }: Props) => {
 };
 
 export default Navbar;
+

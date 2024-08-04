@@ -1,25 +1,30 @@
 import { groq } from "next-sanity";
 
-export const NAVIGATION_MENU_QUERY = groq`*[_type == "navigationMenu"]{
-  logo,
-  title,
-  "links": links[]->{
-    _id,
-    label,
-    slugType,
-    slug,
-    isDropdown,
-    isCTA,
-    "dropdownLinks": dropdownLinks[]->{
+export const NAVIGATION_MENU_QUERY = groq`
+  *[_type == "navigationMenu"]{
+    logo,
+    title,
+    "links": links[]->{
       _id,
       label,
       slugType,
       slug,
       isDropdown,
-      isCTA
+      isCTA,
+      "dropdownLinks": select(
+        isDropdown == true => dropdownLinks[]->{
+          _id,
+          label,
+          slugType,
+          slug,
+          isDropdown,
+          isCTA
+        },
+        null
+      )
     }
-  }
-}[0]`;
+  }[0]
+`;
 
 export const FOOTER_MENU_QUERY = groq`*[_type == "footerMenu"]{
     image,

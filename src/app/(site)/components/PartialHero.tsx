@@ -10,7 +10,7 @@ type Props = {
 
 const PartialHero = ({ data }: Props) => {
   return (
-    <section className="relative flex justify-center items-center h-72 w-full">
+    <section className="relative flex justify-center items-center h-72 w-full mt-20">
       <div className="absolute inset-0">
         <Image
           src={urlFor(data.backgroundImage).url()}

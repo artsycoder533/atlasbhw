@@ -150,6 +150,16 @@ export const PAGE_QUERY = groq`
         answer
       }
     },
+    _type == 'resourceGroup' => {
+      title,
+      resources[]-> {
+        label,
+        resourceType,
+        title,
+        url,
+        file
+     }
+    },
     _type == 'socialMediaLinks' => @
   },
   menuItem->{
@@ -177,3 +187,16 @@ export const SERVICE_QUERY = groq`
     }
   }
 `;
+
+// export const RESOURCE_GROUP_QUERY = groq`
+//   *[_type == "resourceGroup"]{
+//   title,
+//   resources[]->{
+//     label,
+//     resourceType,
+//     title,
+//     url,
+//     file
+//   }
+// }
+// `

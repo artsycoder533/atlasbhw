@@ -212,3 +212,27 @@ export type FAQS = {
     }>;
   }[];
 }
+
+export type Resource = {
+  label: string;
+  image: SanityAsset,
+  description: Array<{
+    _type: "block";
+    children: Array<{
+      _type: "span";
+      text: string;
+      marks: string[];
+    }>;
+    markDefs: any[];
+    style: string;
+  }>;
+  resourceType: 'url' | 'file' | 'both'
+  url?: string;
+  file?: SanityAsset
+}
+
+export type ResourceGroup = {
+  title: string;
+  resources: Resource[];
+  _type: 'resourceGroup';
+}

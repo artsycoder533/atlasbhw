@@ -214,11 +214,13 @@ export type FAQS = {
 }
 
 export type Resource = {
-  label: string;
-  image: SanityAsset,
+  _id: string;
+  title: string;
   description: Array<{
+    _key: string;
     _type: "block";
     children: Array<{
+      _key: string;
       _type: "span";
       text: string;
       marks: string[];
@@ -226,10 +228,14 @@ export type Resource = {
     markDefs: any[];
     style: string;
   }>;
-  resourceType: 'url' | 'file' | 'both'
+  resourceType: 'url' | 'file' | 'both';
   url?: string;
-  file?: SanityAsset
-}
+  urlLabel?: string;
+  file?: {
+    asset: SanityAsset;
+  }
+  fileLabel?: string;
+};
 
 export type ResourceGroup = {
   title: string;

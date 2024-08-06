@@ -159,7 +159,12 @@ export const PAGE_QUERY = groq`
         title,
         url,
         urlLabel,
-        file,
+        file {
+          asset-> {
+            _id,
+            url
+          }
+        },
         fileLabel
      }
     },

@@ -151,8 +151,10 @@ export const PAGE_QUERY = groq`
       }
     },
     _type == 'resourceGroup' => {
+      _id,
       title,
       resources[] {
+        _key,
         label,
         description,
         resourceType,

@@ -214,7 +214,7 @@ export type FAQS = {
 }
 
 export type Resource = {
-  _id: string;
+  _key: string;
   title: string;
   description: Array<{
     _key: string;
@@ -238,6 +238,7 @@ export type Resource = {
 };
 
 export type ResourceGroup = {
+  _id: string;
   title: string;
   resources: Resource[];
   _type: 'resourceGroup';

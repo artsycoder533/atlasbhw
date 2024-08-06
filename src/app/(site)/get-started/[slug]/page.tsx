@@ -4,6 +4,7 @@ import { PAGE_QUERY } from "../../../../../sanity/lib/queries"
 import ContactInfo from "../../components/ContactInfo"
 import FaqAccordion from "../../components/FaqAccordion"
 import PartialHero from "../../components/PartialHero"
+import Resources from "../../components/Resources"
 
 type Props = {
     params: {
@@ -37,6 +38,8 @@ const page = async({params}: Props) => {
             return <FaqAccordion key={section._id} data={section} />;
           case "contactInfo":
             return <ContactInfo key={section._id} data={section} />;
+          case "resourceGroup":
+            return <Resources key={section._id} data={section} />;
           // case 'socialMediaLinks':
           //   return <SocialMediaLinks key={index} data={section} />;
           default:

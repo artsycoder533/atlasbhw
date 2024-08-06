@@ -5,17 +5,12 @@ export default defineType({
   title: "Resource",
   type: "object",
   fields: [
-    // defineField({
-    //   name: "title",
-    //   title: "Title",
-    //   type: "string",
-    // }),
     defineField({
-      name: "label",
-      title: "Label",
+      name: "title",
+      title: "Title",
       type: "string",
-      description: "The display text for the resource link or download",
-      validation: (Rule) => Rule.required().error('Label is required')
+      description: "The title of the resource",
+      validation: (Rule) => Rule.required().error('Title is required')
     }),
     defineField({
       name: 'description',
@@ -46,11 +41,26 @@ export default defineType({
       hidden: ({ parent }) => !['url', 'both'].includes(parent?.resourceType),
     }),
     defineField({
+      name: "urlLabel",
+      title: "URL Label",
+      type: "string",
+      description: "The label for the URL",
+      hidden: ({ parent }) => !['url', 'both'].includes(parent?.resourceType),
+    }),
+    defineField({
       name: "file",
       title: "File",
       type: "file",
       description: "The file to be downloaded",
       hidden: ({ parent }) => !['file', 'both'].includes(parent?.resourceType),
     }),
+    defineField({
+      name: "fileLabel",
+      title: "File Label",
+      type: "string",
+      description: "The label for the file",
+      hidden: ({ parent }) => !['file', 'both'].includes(parent?.resourceType),
+    }),
   ],
 });
+

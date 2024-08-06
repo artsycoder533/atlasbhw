@@ -152,12 +152,15 @@ export const PAGE_QUERY = groq`
     },
     _type == 'resourceGroup' => {
       title,
-      resources[]-> {
+      resources[] {
         label,
+        description,
         resourceType,
         title,
         url,
-        file
+        urlLabel,
+        file,
+        fileLabel
      }
     },
     _type == 'socialMediaLinks' => @

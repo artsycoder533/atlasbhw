@@ -11,7 +11,10 @@ const ContentSection = ({ data }: Props) => {
 
   return (
     <div className="space-y-12 py-10">
-      <section id="our-mission" className=" flex items-center max-w-7xl w-[90vw] p-10 rounded-2xl bg-primary-brown/25 mx-auto">
+      <section
+        id="our-mission"
+        className=" flex items-center max-w-7xl w-[90vw] p-10 rounded-2xl bg-primary-brown/25 mx-auto"
+      >
         <div className="w-1/2">
           <h3 className="mb-3 text-2xl">{missionStatement.heading}</h3>
         </div>
@@ -19,7 +22,10 @@ const ContentSection = ({ data }: Props) => {
           <PortableText value={missionStatement.bodyText} />
         </div>
       </section>
-      <section id="teaching-site-statement" className="flex items-center max-w-7xl p-10 w-[90vw] rounded-2xl bg-secondary-accent/35 mx-auto">
+      <section
+        id="teaching-site-statement"
+        className="flex items-center max-w-7xl p-10 w-[90vw] rounded-2xl bg-secondary-accent/35 mx-auto"
+      >
         <div className="w-1/2">
           <h3 className="mb-3 text-2xl">{teachingSiteStatement.heading}</h3>
         </div>

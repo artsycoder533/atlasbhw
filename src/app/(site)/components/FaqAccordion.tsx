@@ -9,7 +9,7 @@ type Props = {
 
 const FaqAccordion = ({ data }: Props) => {
   const { title, faqsList } = data;
-  console.log(data);
+
   return (
     <section className="border py-12">
       <div className="flex justify-center">

@@ -8,7 +8,7 @@ import {
   FaTiktok,
   FaTwitter,
 } from "react-icons/fa";
-import { FaClock, FaLocationPin } from "react-icons/fa6";
+import { FaClock } from "react-icons/fa6";
 import { MdLocationPin } from "react-icons/md";
 import React from "react";
 
@@ -27,7 +27,6 @@ const ContactInfo = ({ data }: Props) => {
     socialMediaLinks,
   } = data;
   const { streetAddress, addressLine2, city, state, postalCode } = address;
-  console.log("data ====>", data);
 
   return (
     <section className="py-16 bg-primary-brown">

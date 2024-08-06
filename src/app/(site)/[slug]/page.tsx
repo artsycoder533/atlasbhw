@@ -3,7 +3,6 @@ import { sanityFetch } from "../../../../sanity/lib/fetch";
 import { PAGE_QUERY } from "../../../../sanity/lib/queries";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import Title from "../components/Title";
 import PartialHero from "../components/PartialHero";
 import ContentSection from "../components/ContentSection";
 import StaffMembers from "../components/StaffMembers";
@@ -17,7 +16,6 @@ interface PageProps {
 }
 
 const Page = async ({ params }: PageProps) => {
-  console.log("params.slug ====>", params.slug);
   const pageData = await sanityFetch<SanityDocument>({
     query: PAGE_QUERY,
     params: { slug: params.slug },
@@ -29,7 +27,6 @@ const Page = async ({ params }: PageProps) => {
 
   return (
     <div className="">
-      <Title size="lg" title={pageData.title} />
       {pageData.content.map((section: any) => {
         switch (section._type) {
           case "heroSection":
@@ -46,8 +43,6 @@ const Page = async ({ params }: PageProps) => {
             return <FaqAccordion key={section._id} data={section} />;
           case "contactInfo":
             return <ContactInfo key={section._id} data={section} />;
-          // case 'socialMediaLinks':
-          //   return <SocialMediaLinks key={index} data={section} />;
           default:
             return null;
         }

@@ -195,16 +195,3 @@ export const SERVICE_QUERY = groq`
     }
   }
 `;
-
-// export const RESOURCE_GROUP_QUERY = groq`
-//   *[_type == "resourceGroup"]{
-//   title,
-//   resources[]->{
-//     label,
-//     resourceType,
-//     title,
-//     url,
-//     file
-//   }
-// }
-// `

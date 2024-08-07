@@ -19,7 +19,7 @@ const FaqAccordion = ({ data }: Props) => {
       <div className="max-w-prose mx-auto space-y-2 py-10">
         {faqsList.map((faq) => {
           return (
-            <details className="p-6">
+            <details className="p-6" key={faq._key}>
               <summary className="">{faq.question}</summary>
               <div className="py-4">
                 <PortableText value={faq.answer} />

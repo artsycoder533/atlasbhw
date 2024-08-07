@@ -148,6 +148,7 @@ export const PAGE_QUERY = groq`
      _type == 'faqs' => {
       title,
       faqsList[] {
+        _key,
         question,
         answer
       }

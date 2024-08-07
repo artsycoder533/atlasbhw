@@ -42,7 +42,7 @@ export interface HeroSection extends Section {
     url: string;
     // Define fields here based on your primaryCTA object structure
   };
-  heroStyle: string;
+  // heroStyle: string;
   announcementBanner: string;
 }
 
@@ -200,6 +200,7 @@ export type FAQS = {
   _id: string;
   title: string;
   faqsList: {
+    _key: string;
     question: string;
     answer: Array<{
       _type: "block";

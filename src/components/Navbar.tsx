@@ -133,7 +133,7 @@ const Navbar = ({ navigationMenu }: Props) => {
           return (
             <li key={_id}>
               <Link
-                className={`text-xl lg:text-base py-2 text-primary-text hover:text-accent ${
+                className={`rounded-md text-xl lg:text-base py-2 text-primary-text hover:text-accent ${
                   isCTA
                     ? "bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white"
                     : "bg-none"

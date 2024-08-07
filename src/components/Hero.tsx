@@ -28,7 +28,7 @@ const Hero = ({ data }: Props) => {
 
   return (
     <section
-      className="mt-20 flex relative min-h-[80vh] sm:min-h-[60vh]  items-center overflow-hidden border"
+      className="mt-20 flex relative min-h-[80vh] sm:min-h-[60vh]  items-center overflow-hidden"
       id="hero"
     >
       <div className="absolute inset-0 z-10">

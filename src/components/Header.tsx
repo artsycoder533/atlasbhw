@@ -1,7 +1,7 @@
 import Navbar from "./Navbar"
 import { SanityDocument } from "next-sanity"
-import { NAVIGATION_MENU_QUERY } from "../../../../sanity/lib/queries"
-import { sanityFetch } from "../../../../sanity/lib/fetch"
+import { NAVIGATION_MENU_QUERY } from "../../sanity/lib/queries"
+import { sanityFetch } from "../../sanity/lib/fetch"
 type Props = {}
 
 const Header = async (props: Props) => {

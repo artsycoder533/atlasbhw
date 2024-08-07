@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import roboto from "./fonts.ts/Roboto";
-import montserratAlternates from "./fonts.ts/Montserrat_Alternatives";
+import roboto from "../../fonts.ts/Roboto";
 import "../globals.css";
-import Header from "./components/Header";
+import Header from "@/components/Header";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
-import Footer from "./components/Footer";
+import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {

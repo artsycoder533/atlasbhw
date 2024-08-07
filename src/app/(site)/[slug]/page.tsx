@@ -1,14 +1,14 @@
 import { SanityDocument } from "next-sanity";
 import { sanityFetch } from "../../../../sanity/lib/fetch";
 import { PAGE_QUERY } from "../../../../sanity/lib/queries";
-import Hero from "../components/Hero";
-import Services from "../components/Services";
-import PartialHero from "../components/PartialHero";
-import ContentSection from "../components/ContentSection";
-import StaffMembers from "../components/StaffMembers";
-import FaqAccordion from "../components/FaqAccordion";
-import ContactInfo from "../components/ContactInfo";
-import Cta from "../components/Cta";
+import PartialHero from "@/components/PartialHero";
+import ContentSection from "@/components/ContentSection";
+import StaffMembers from "@/components/StaffMembers";
+import FaqAccordion from "@/components/FaqAccordion";
+import ContactInfo from "@/components/ContactInfo";
+import Cta from "@/components/Cta";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
 
 interface PageProps {
   params: {

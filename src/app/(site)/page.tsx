@@ -1,11 +1,11 @@
 import { sanityFetch } from "../../../sanity/lib/fetch";
 import { PAGE_QUERY } from "../../../sanity/lib/queries";
-import Hero from "./components/Hero";
-import Services from "./components/Services";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
 import { PageData } from "@/types";
-import ContactInfo from "./components/ContactInfo";
-import Partners from "./components/Partners";
-import Cta from "./components/Cta";
+import ContactInfo from "@/components/ContactInfo";
+import Partners from "@/components/Partners";
+import Cta from "@/components/Cta";
 
 const Home = async () => {
   const pageData = await sanityFetch<PageData>({

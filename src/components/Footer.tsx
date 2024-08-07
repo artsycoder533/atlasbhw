@@ -1,9 +1,9 @@
 import React from "react";
-import { sanityFetch } from "../../../../sanity/lib/fetch";
-import { FOOTER_MENU_QUERY } from "../../../../sanity/lib/queries";
+import { sanityFetch } from "../../sanity/lib/fetch";
+import { FOOTER_MENU_QUERY } from "../../sanity/lib/queries";
 import { SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import { projectId, dataset } from "../../../../sanity/env";
+import { projectId, dataset } from "../../sanity/env";
 import Image from "next/image";
 import { getYear } from "@/utils/helper";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import Title from "./Title";
 import {
   FaHeart,
 } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+
 import SocialMediaLinks from "./SocialMediaLinks";
 
 const urlFor = (source: any) =>

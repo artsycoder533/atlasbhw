@@ -1,4 +1,4 @@
-import montserratAlternates from "../fonts.ts/Montserrat_Alternatives";
+import montserratAlternates from "@/fonts.ts/Montserrat_Alternatives";
 
 type Props = {
   title: string;

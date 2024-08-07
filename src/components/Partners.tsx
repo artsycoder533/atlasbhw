@@ -1,7 +1,7 @@
 import { PartnerGroup } from "@/types";
 import Image from "next/image";
 import Title from "./Title";
-import { urlForImage } from "../../../../sanity/lib/image";
+import { urlForImage } from "../../sanity/lib/image";
 
 type Props = {
   data: PartnerGroup;

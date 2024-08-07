@@ -1,12 +1,12 @@
 import { sanityFetch } from "../../../../../sanity/lib/fetch";
 import { SanityDocument } from "next-sanity";
 import { PAGE_QUERY } from "../../../../../sanity/lib/queries";
-import ContactInfo from "../../components/ContactInfo";
-import FaqAccordion from "../../components/FaqAccordion";
-import PartialHero from "../../components/PartialHero";
-import Resources from "../../components/Resources";
-import Job from "../../components/Job";
-import Cta from "../../components/Cta";
+import ContactInfo from "@/components/ContactInfo";
+import FaqAccordion from "@/components/FaqAccordion";
+import PartialHero from "@/components/PartialHero";
+import Resources from "@/components/Resources";
+import Job from "@/components/Job";
+import Cta from "@/components/Cta";
 
 type Props = {
   params: {

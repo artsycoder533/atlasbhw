@@ -1,11 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import React from "react";
 import imageUrlBuilder from "@sanity/image-url";
-import { projectId, dataset } from "../../../../sanity/env";
+import { projectId, dataset } from "../../sanity/env";
 import Image from "next/image";
 import { HeroSection } from "@/types";
 import AnnouncementBanner from "./AnnouncementBanner";
-import montserratAlternates from "../fonts.ts/Montserrat_Alternatives";
+import montserratAlternates from "@/fonts.ts/Montserrat_Alternatives";
 import Link from "next/link";
 
 const urlFor = (source: any) =>

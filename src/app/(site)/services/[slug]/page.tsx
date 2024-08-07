@@ -3,7 +3,7 @@ import { sanityFetch } from "../../../../../sanity/lib/fetch";
 import { PortableText, SanityDocument } from "next-sanity";
 import { SERVICE_QUERY } from "../../../../../sanity/lib/queries";
 import { notFound } from "next/navigation";
-import Title from "../../components/Title";
+import Title from "@/components/Title";
 import { urlFor } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";

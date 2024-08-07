@@ -21,10 +21,10 @@ const Job = ({ data }: Props) => {
   } = data;
 
   if (!data) {
-   return <p>We do not have any openings at this </p>;
+    return <p className="py-16 max-w-prose w-[90vw] mx-auto">We do not have any openings at this time.</p>;
   }
   return (
-    <section className="py-16 mx-auto prose max-w-prose">
+    <section className="py-16 mx-auto prose max-w-prose w-[90vw]">
       <h2 className="font-semibold text-3xl">{title}</h2>
       <PortableText value={description} />
       <h3>Responsibilities:</h3>
@@ -43,15 +43,9 @@ const Job = ({ data }: Props) => {
       <p>{workLocation}</p>
 
       <div>
-        <form
-          action=""
-          className="w-[90vw] max-w-prose flex flex-col"
-        >
-      
-            <h2>Job Application</h2>
-            <p>* Denotes field is required</p>
-   
-
+        <h2>Job Application</h2>
+        <p>* Denotes field is required</p>
+        <form action="" className="w-[90vw] max-w-prose flex flex-col">
           <div className="flex flex-col mb-3">
             <label htmlFor="name">Name: *</label>
             <input
@@ -91,10 +85,20 @@ const Job = ({ data }: Props) => {
           </div>
           <div className="flex flex-col">
             <label htmlFor="resume">Resume: *</label>
-            <input type="file" name="resume" id="resume" className="border p-1" />
+            <input
+              type="file"
+              name="resume"
+              id="resume"
+              className="border p-1"
+            />
           </div>
 
-          <button className="px-4 py-2 mt-6 border self-start">Apply</button>
+          <button
+            className="px-6 py-2 mt-6 self-start bg-accent text-white rounded-md"
+            type="submit"
+          >
+            Apply
+          </button>
         </form>
       </div>
     </section>

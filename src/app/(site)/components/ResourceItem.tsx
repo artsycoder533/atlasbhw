@@ -13,14 +13,14 @@ const ResourceItem = ({ resource }: Props) => {
   const fileURL = file?.asset.url;
 
   return (
-    <div className="flex flex-col gap-2 border p-10 rounded-2xl bg-primary-brown/15">
+    <div className="flex flex-col gap-2 p-10 rounded-2xl bg-primary-brown/15">
       <h3 className="text-2xl">{title}</h3>
       <PortableText value={description} />
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4 mt-4">
         {url ? (
           <Link
             href={url}
-            className="flex gap-2 items-center px-3 py-2 rounded-md bg-primary-brown text-white"
+            className="flex justify-between items-center gap-4 px-3 py-2 rounded-md bg-primary-brown text-white"
             target="_blank"
             rel="noopener noreferrer"
           >

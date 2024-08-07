@@ -31,7 +31,7 @@ const ContactInfo = ({ data }: Props) => {
   return (
     <section className="py-16 bg-primary-brown">
       <div className="flex flex-col gap-6 md:gap-0 md:flex-row max-w-screen-2xl mx-auto w-[90vw]">
-        <div className="w-1/2 lg:w-1/3">
+        <div className="md:w-1/2 md:lg:w-1/3">
           <Title title="Get In Touch" size="lg" altColor />
         </div>
         <div className="md:w-1/2 lg:w-2/3">

@@ -13,23 +13,23 @@ const ContentSection = ({ data }: Props) => {
     <div className="space-y-12 py-10">
       <section
         id="our-mission"
-        className=" flex items-center max-w-7xl w-[90vw] p-10 rounded-2xl bg-primary-brown/25 mx-auto"
+        className=" flex flex-col md:flex-row items-center max-w-7xl w-[90vw] p-10 rounded-2xl bg-primary-brown/25 mx-auto"
       >
-        <div className="w-1/2">
+        <div className="md:w-1/2 w-full">
           <h3 className="mb-3 text-2xl">{missionStatement.heading}</h3>
         </div>
-        <div className="w-1/2 max-w-prose">
+        <div className="md:w-1/2 max-w-prose">
           <PortableText value={missionStatement.bodyText} />
         </div>
       </section>
       <section
         id="teaching-site-statement"
-        className="flex items-center max-w-7xl p-10 w-[90vw] rounded-2xl bg-secondary-accent/35 mx-auto"
+        className="flex flex-col md:flex-row items-center max-w-7xl p-10 w-[90vw] rounded-2xl bg-secondary-accent/35 mx-auto"
       >
-        <div className="w-1/2">
+        <div className="md:w-1/2 w-full">
           <h3 className="mb-3 text-2xl">{teachingSiteStatement.heading}</h3>
         </div>
-        <div className="w-1/2 max-w-prose">
+        <div className="md:w-1/2 max-w-prose">
           <div className="prose">
             <PortableText value={teachingSiteStatement.bodyText} />
           </div>

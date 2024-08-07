@@ -11,13 +11,13 @@ type Props = {
 const StaffMember = ({ staff }: Props) => {
   const { name, headshot, credentials, role, specialties, ehrLink } = staff;
   return (
-    <section className="flex gap-10 w-full rounded-xl py-6">
-      <div className="w-64 h-72 relative rounded-xl ">
+    <section className="flex flex-col md:flex-row gap-10 w-full rounded-xl py-6">
+      <div className="w-64 h-80 relative rounded-xl mx-auto">
         <Image
           src={urlFor(headshot).url()}
           alt={`headshot of ${name}`}
           fill
-          className="rounded-xl object-cover w-full"
+          className="rounded-xl object-cover object-center w-full"
         />
       </div>
       <div className="flex flex-col basis-1/2">
@@ -34,7 +34,7 @@ const StaffMember = ({ staff }: Props) => {
           href={ehrLink.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-3 bg-accent text-white rounded-xl mt-auto self-start"
+          className="px-4 py-3 bg-accent text-white rounded-xl md:mt-auto self-start mt-8 w-full text-center md:w-auto"
         >
           {ehrLink.label}
         </Link>

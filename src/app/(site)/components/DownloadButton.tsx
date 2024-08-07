@@ -33,7 +33,7 @@ const DownloadButton = ({ label, url }: Props) => {
   return (
     <button
       onClick={() => handleDownload(url)}
-      className="flex gap-2 items-center px-3 py-2 rounded-md bg-primary-brown text-white"
+      className="flex justify-between items-center gap-4 px-3 py-2 rounded-md bg-primary-brown text-white"
     >
       {label} <FaDownload />
     </button>

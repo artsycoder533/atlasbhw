@@ -5,6 +5,7 @@ import Services from "./components/Services";
 import { PageData } from "@/types";
 import ContactInfo from "./components/ContactInfo";
 import Partners from "./components/Partners";
+import Cta from "./components/Cta";
 
 const Home = async () => {
   const pageData = await sanityFetch<PageData>({
@@ -27,7 +28,9 @@ const Home = async () => {
           case "contactInfo":
             return <ContactInfo key={section._id} data={section} />;
           case "partnerGroup":
-            return <Partners key={section._id} data={section} />
+            return <Partners key={section._id} data={section} />;
+          case "scheduleCTA":
+            return <Cta key={section._id} data={section} />;
           default:
             return null;
         }

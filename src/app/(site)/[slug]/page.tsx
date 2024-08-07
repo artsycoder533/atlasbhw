@@ -8,6 +8,7 @@ import ContentSection from "../components/ContentSection";
 import StaffMembers from "../components/StaffMembers";
 import FaqAccordion from "../components/FaqAccordion";
 import ContactInfo from "../components/ContactInfo";
+import Cta from "../components/Cta";
 
 interface PageProps {
   params: {
@@ -43,6 +44,8 @@ const Page = async ({ params }: PageProps) => {
             return <FaqAccordion key={section._id} data={section} />;
           case "contactInfo":
             return <ContactInfo key={section._id} data={section} />;
+            case "scheduleCTA":
+              return <Cta key={section._id} data={section} />;
           default:
             return null;
         }

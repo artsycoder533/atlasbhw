@@ -22,6 +22,7 @@ import resource from "./schemaTypes/resource";
 import resourceGroup from "./schemaTypes/resourceGroup";
 import partner from "./schemaTypes/partner";
 import partnerGroup from "./schemaTypes/partnerGroup";
+import scheduleCTA from "./schemaTypes/scheduleCTA";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -48,5 +49,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     resourceGroup,
     partner,
     partnerGroup,
+    scheduleCTA,
   ],
 };

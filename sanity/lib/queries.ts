@@ -205,7 +205,18 @@ export const PAGE_QUERY = groq`
       requestCoverLetter,
       benefits,
       responsibilities,
-    }
+    },
+    _type == 'scheduleCTA' => {
+      _id,
+      heading,
+      ctaItems[] => {
+        _key,
+        label,
+        url,
+        email,
+        ctaText,
+      }
+    },
   },
   menuItem->{
     label,

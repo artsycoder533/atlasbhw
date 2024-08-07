@@ -327,3 +327,16 @@ export type JobListing = {
     style: string;
   }>;
 };
+
+export type CtaItem = {
+  _key: string;
+  label: string;
+  url: string;
+  email: string;
+  ctaText: string;
+};
+
+export type CtaItems = {
+  heading: string;
+  ctaItems: CtaItem[];
+}

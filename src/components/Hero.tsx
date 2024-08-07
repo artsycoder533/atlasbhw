@@ -22,13 +22,13 @@ const Hero = ({ data }: Props) => {
     heading,
     primaryCTA,
     secondaryCTA,
-    heroStyle,
+    // heroStyle,
     announcementBanner,
   } = data;
 
   return (
     <section
-      className="mt-20 flex relative min-h-[80vh] sm:min-h-[60vh] md:min-h-[70vh] items-center overflow-hidden border"
+      className="mt-20 flex relative min-h-[80vh] sm:min-h-[60vh]  items-center overflow-hidden border"
       id="hero"
     >
       <div className="absolute inset-0 z-10">
@@ -51,13 +51,13 @@ const Hero = ({ data }: Props) => {
         />
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 mt-4">
           <Link
-            href="#book"
+            href={`#${primaryCTA.url}`}
             className="flex items-center justify-center text-white px-4 py-3 bg-accent rounded-md w-full md:w-auto" 
           >
             {primaryCTA.label}
           </Link>
           <Link
-            href="#about"
+            href={`#${secondaryCTA.url}`}
             className="flex items-center justify-center text-white px-4 py-2 border-2 border-accent rounded-md  w-full md:w-auto"
           >
             {secondaryCTA.label}

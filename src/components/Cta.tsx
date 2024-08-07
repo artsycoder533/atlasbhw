@@ -9,7 +9,7 @@ type Props = {
 const Cta = ({ data }: Props) => {
   const { ctaItems, heading } = data;
   return (
-    <section className="py-16 bg-primary-gray flex flex-col justify-center items-center gap-4">
+    <section id="schedule-appointment" className="py-16 bg-primary-gray flex flex-col justify-center items-center gap-4">
       <div className="max-w-7xl w-[90vw] mx-auto flex flex-col gap-8">
         <h3 className="font-bold text-primary-brown text-2xl md:text-center">{heading}</h3>
         <div className="flex flex-col gap-10">

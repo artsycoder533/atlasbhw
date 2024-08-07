@@ -10,7 +10,7 @@ type Props = {
 
 const Services = ({ data }: Props) => {
   return (
-    <section className="py-16">
+    <section className="py-16" id="services">
       <div className="flex justify-center">
       <Title size="lg" title={data.title} />
       </div>

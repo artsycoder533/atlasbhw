@@ -170,7 +170,40 @@ export const PAGE_QUERY = groq`
         fileLabel
      }
     },
-    _type == 'socialMediaLinks' => @
+    _type == 'partnerGroup' => {
+      _id,
+      title,
+      content[] {
+        _key,
+        companyName,
+        logo {
+          asset-> {
+            _id,
+            url,
+            metadata {
+              dimensions {
+                width,
+                height
+              }
+            }
+          }
+        }
+      }
+    },
+    _type == 'jobListing' => {
+      _id,
+      title,
+      description,
+      certification,
+      pay,
+      supplementalPay,
+      schedule,
+      workLocation,
+      requestResume,
+      requestCoverLetter,
+      benefits,
+      responsibilities,
+    }
   },
   menuItem->{
     label,

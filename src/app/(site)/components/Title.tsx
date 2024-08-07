@@ -16,7 +16,7 @@ const Title = ({ title, size, altColor }: Props) => {
         </p>
       )}
       {size === "lg" && (
-        <h2 className={`w-full relative flex text-center ${montserratAlternates.className} ${altColor ? 'text-white' : 'text-primary-brown'} font-bold tracking-wide text-4xl md:text-5xl mb-4`}>
+        <h2 className={`w-full relative flex ${montserratAlternates.className} ${altColor ? 'text-white' : 'text-primary-brown'} font-bold tracking-wide text-4xl md:text-5xl mb-4`}>
           {title}
           <span className="hidden sm:block absolute bottom-0 left-0 bg-accent h-[3px] w-36"></span>
         </h2>

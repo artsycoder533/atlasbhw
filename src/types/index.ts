@@ -247,10 +247,8 @@ export type ResourceGroup = {
 
 export type Partner = {
   _key: string;
-  content: {
-    companyName: string;
-    logo: SanityAsset;
-  };
+  companyName: string;
+  logo: SanityAsset;
 };
 
 export type PartnerGroup = {

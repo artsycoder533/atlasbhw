@@ -20,6 +20,8 @@ import staffGroup from "./schemaTypes/staffGroup";
 import heroPartial from "./schemaTypes/heroPartial";
 import resource from "./schemaTypes/resource";
 import resourceGroup from "./schemaTypes/resourceGroup";
+import partner from "./schemaTypes/partner";
+import partnerGroup from "./schemaTypes/partnerGroup";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -43,6 +45,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     staffGroup, 
     heroPartial,
     resource,
-    resourceGroup
+    resourceGroup,
+    partner,
+    partnerGroup,
   ],
 };

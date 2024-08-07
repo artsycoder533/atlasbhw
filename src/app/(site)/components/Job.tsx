@@ -7,7 +7,6 @@ type Props = {
 };
 
 const Job = ({ data }: Props) => {
-  console.log("data ====>", data);
   const {
     title,
     pay,

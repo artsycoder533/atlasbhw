@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Services from "./components/Services";
 import { PageData } from "@/types";
 import ContactInfo from "./components/ContactInfo";
+import Partners from "./components/Partners";
 
 const Home = async () => {
   const pageData = await sanityFetch<PageData>({
@@ -17,7 +18,7 @@ const Home = async () => {
 
   return (
     <>
-      {pageData.content.map((section: any, index: number) => {
+      {pageData.content.map((section: any) => {
         switch (section._type) {
           case "heroSection":
             return <Hero key={section._id} data={section} />;
@@ -25,6 +26,8 @@ const Home = async () => {
             return <Services key={section._id} data={section} />;
           case "contactInfo":
             return <ContactInfo key={section._id} data={section} />;
+          case "partnerGroup":
+            return <Partners key={section._id} data={section} />
           default:
             return null;
         }

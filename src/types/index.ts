@@ -15,7 +15,8 @@ export type MenuItem = {
 
 interface Section {
   _type: string;
-  _key: string;
+  _key?: string;
+  _id?: string;
 }
 
 export interface HeroSection extends Section {
@@ -195,7 +196,7 @@ export type Staff = {
 };
 
 export type FAQS = {
-  _type: 'faqs'
+  _type: "faqs";
   _id: string;
   title: string;
   faqsList: {
@@ -211,7 +212,7 @@ export type FAQS = {
       style: string;
     }>;
   }[];
-}
+};
 
 export type Resource = {
   _key: string;
@@ -228,12 +229,12 @@ export type Resource = {
     markDefs: any[];
     style: string;
   }>;
-  resourceType: 'url' | 'file' | 'both';
+  resourceType: "url" | "file" | "both";
   url?: string;
   urlLabel?: string;
   file?: {
     asset: SanityAsset;
-  }
+  };
   fileLabel?: string;
 };
 
@@ -241,5 +242,90 @@ export type ResourceGroup = {
   _id: string;
   title: string;
   resources: Resource[];
-  _type: 'resourceGroup';
-}
+  _type: "resourceGroup";
+};
+
+export type Partner = {
+  _key: string;
+  content: {
+    companyName: string;
+    logo: SanityAsset;
+  };
+};
+
+export type PartnerGroup = {
+  _id: string;
+  title: string;
+  content: Partner[];
+  _type: "partnerGroup";
+};
+
+export type JobListing = {
+  _id: string;
+  title: string;
+  description: Array<{
+    _key: string;
+    _type: "block";
+    children: Array<{
+      _key: string;
+      _type: "span";
+      text: string;
+      marks: string[];
+    }>;
+    markDefs: any[];
+    style: string;
+  }>;
+  certification: string;
+  pay: string;
+  supplementalPay: Array<{
+    _key: string;
+    _type: "block";
+    children: Array<{
+      _key: string;
+      _type: "span";
+      text: string;
+      marks: string[];
+    }>;
+    markDefs: any[];
+    style: string;
+  }>;
+  schedule: Array<{
+    _key: string;
+    _type: "block";
+    children: Array<{
+      _key: string;
+      _type: "span";
+      text: string;
+      marks: string[];
+    }>;
+    markDefs: any[];
+    style: string;
+  }>;
+  workLocation: string;
+  requestResume: string;
+  requestCoverLetter: string;
+  benefits: Array<{
+    _key: string;
+    _type: "block";
+    children: Array<{
+      _key: string;
+      _type: "span";
+      text: string;
+      marks: string[];
+    }>;
+    markDefs: any[];
+    style: string;
+  }>;
+  responsibilities: Array<{
+    _key: string;
+    _type: "block";
+    children: Array<{
+      _key: string;
+      _type: "span";
+      text: string;
+      marks: string[];
+    }>;
+    markDefs: any[];
+    style: string;
+  }>;
+};

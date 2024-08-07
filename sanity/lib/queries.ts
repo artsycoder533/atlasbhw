@@ -74,6 +74,7 @@ export const PAGE_QUERY = groq`
     _type == 'services' => {
       ...,
       servicesList[]->{
+        _id,
         title,
         image,
         slug,
@@ -132,6 +133,7 @@ export const PAGE_QUERY = groq`
     _type == 'staffGroup' => {
       title,
       staffMembers[]-> {
+        _id,
         name,
         headshot,
         credentials,

@@ -32,7 +32,7 @@ const ServiceDetail = async ({ params }: Props) => {
           <Image
             src={urlFor(image).url()}
             alt="Background Image"
-            layout="fill"
+            fill
             objectFit="cover"
             className="z-0"
           />

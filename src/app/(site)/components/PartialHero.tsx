@@ -15,7 +15,7 @@ const PartialHero = ({ data }: Props) => {
         <Image
           src={urlFor(data.backgroundImage).url()}
           alt="Background Image"
-          layout="fill"
+          fill
           objectFit="cover"
           className="z-0"
         />

@@ -31,7 +31,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
         // body: new URLSearchParams(formData as any).toString(),
         body: new FormData(event.target as HTMLFormElement)
       });
-      console.log('res ===>', res.json)
+      console.log('res ===>', res)
       if (res.status === 200) {
         setStatus("ok");
         (myForm as HTMLFormElement).reset();
@@ -51,10 +51,11 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       name="atlasbhw-jobs"
       className="w-[90vw] max-w-prose flex flex-col"
       data-netlify="true"
-    //   data-netlify-recaptcha="true"
+      data-netlify-recaptcha="true"
     >
       <input type="hidden" name="form-name" value="atlasbhw-jobs" />
       <input type="hidden" name="bot-field" />
+      <input type="hidden" name="g-recaptcha-response" />
       <div className="flex flex-col mb-3">
         <label htmlFor="name">Name: *</label>
         <input

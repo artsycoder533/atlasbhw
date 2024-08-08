@@ -52,6 +52,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       data-netlify-recaptcha="true"
     >
       <input type="hidden" name="form-name" value="atlasbhw-jobs" />
+      <input type="hidden" name="bot-field" />
       <div className="flex flex-col mb-3">
         <label htmlFor="name">Name: *</label>
         <input
@@ -111,7 +112,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
           />
         </div>
       )}
-      <div data-netlify-recaptcha="true" />
+      <div data-netlify-recaptcha="true"></div>
       <button
         className="px-6 py-2 mt-6 self-start bg-accent text-white rounded-md"
         type="submit"

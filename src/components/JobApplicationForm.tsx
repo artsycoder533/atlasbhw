@@ -75,7 +75,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       <div className="flex flex-col mb-3">
         <label htmlFor="phone">Phone: *</label>
         <input
-          type="phone"
+          type="text"
           placeholder="(XXX)-XXX-XXXX"
           className="border p-1 rounded-md"
           required
@@ -120,6 +120,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
           "Apply"
         )}
       </button>
+      <p className="text-red-500">{error}</p>
     </form>
   );
 };

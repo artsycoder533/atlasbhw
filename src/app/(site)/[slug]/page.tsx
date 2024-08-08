@@ -9,6 +9,28 @@ import ContactInfo from "@/components/ContactInfo";
 import Cta from "@/components/Cta";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import { notFound } from "next/navigation";
+
+export async function generateStaticParams() {
+  try {
+    // Fetch slugs directly from the 'pages' schema where menuItem slug is not null
+    const slugs = await sanityFetch<string[]>({
+      query: `*[_type == "pages" && menuItem->slug.current != null].menuItem->slug.current`,
+      perspective: 'published',
+    });
+
+    // Filter out invalid slugs
+    const validSlugs = slugs.filter(slug => slug && slug !== '/');
+
+    // Return slugs as they are
+    return validSlugs.map((slug: string) => ({
+      slug,
+    }));
+  } catch (error) {
+    console.error('Error fetching slugs:', error);
+    return [];
+  }
+}
 
 interface PageProps {
   params: {
@@ -23,7 +45,8 @@ const Page = async ({ params }: PageProps) => {
   });
 
   if (!pageData) {
-    return <div className="mt-48">Page not found</div>;
+    // return <div className="mt-48">Page not found</div>;
+    return notFound();
   }
 
   return (

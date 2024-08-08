@@ -8,6 +8,20 @@ import { urlFor } from "@/utils/helper";
 import Image from "next/image";
 import Link from "next/link";
 
+export async function generateStaticParams() {
+  try {
+    const slugs = await sanityFetch<string[]>({
+      query: `*[_type == "service"].slug.current`,
+      perspective: 'published',
+    });
+
+    return slugs.map((slug: string) => ({ slug }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
+}
+
 type Props = {
   params: {
     slug: string;

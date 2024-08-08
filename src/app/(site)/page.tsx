@@ -6,6 +6,7 @@ import { PageData } from "@/types";
 import ContactInfo from "@/components/ContactInfo";
 import Partners from "@/components/Partners";
 import Cta from "@/components/Cta";
+import { notFound } from "next/navigation";
 
 const Home = async () => {
   const pageData = await sanityFetch<PageData>({
@@ -14,7 +15,8 @@ const Home = async () => {
   });
 
   if (!pageData) {
-    return <div className="mt-32">Page not found</div>;
+    // return <div className="mt-32">Page not found</div>;
+    return notFound();
   }
 
   return (

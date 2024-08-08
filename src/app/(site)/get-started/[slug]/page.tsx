@@ -8,6 +8,30 @@ import Resources from "@/components/Resources";
 import Job from "@/components/Job";
 import Cta from "@/components/Cta";
 
+export async function generateStaticParams() {
+  try {
+    // Fetch slugs directly from the 'pages' schema where menuItem slug is not null
+    const slugs = await sanityFetch<string[]>({
+      query: `*[_type == "pages" && menuItem->slug.current != null].menuItem->slug.current`,
+      perspective: 'published',
+    });
+
+    // Filter out invalid slugs
+    const validSlugs = slugs.filter(slug => slug && slug !== '/');
+
+    // Return slugs as they are
+    return validSlugs.map((slug: string) => ({
+      slug,
+    }));
+  } catch (error) {
+    console.error('Error fetching slugs:', error);
+    return [];
+  }
+}
+
+
+
+
 type Props = {
   params: {
     slug: string;

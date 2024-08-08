@@ -83,7 +83,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
           required
         />
       </div>
-      {requestCoverLetter && (
+      {/* {requestCoverLetter && (
         <div className="flex flex-col mb-3">
           <label htmlFor="coverLetter">Cover Letter: *</label>
           <input
@@ -108,7 +108,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
             required
           />
         </div>
-      )}
+      )} */}
       <div data-netlify-recaptcha="true" />
       <button
         className="px-6 py-2 mt-6 self-start bg-accent text-white rounded-md"

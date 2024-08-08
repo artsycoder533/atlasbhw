@@ -17,14 +17,16 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       setStatus("pending");
       setError(null);
       const myForm = event.target as HTMLFormElement;
-      const formData = new FormData(myForm);
-      const params = new URLSearchParams();
-      formData.forEach((value, key) => {
-        params.append(key, value.toString());
-      });
+    //   const formData = new FormData(myForm);
+    const formData = new FormData(event.target as HTMLFormElement);
+    //   const params = new URLSearchParams();
+    //   formData.forEach((value, key) => {
+    //     params.append(key, value.toString());
+    //   });
       const res = await fetch("/__forms.html", {
         method: "POST",
-        body: params.toString(),
+        // body: params.toString(),
+        body: new URLSearchParams(formData).toString()
       });
       if (res.status === 200) {
         setStatus("ok");

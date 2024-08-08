@@ -22,7 +22,6 @@ const Hero = ({ data }: Props) => {
     heading,
     primaryCTA,
     secondaryCTA,
-    // heroStyle,
     announcementBanner,
   } = data;
 

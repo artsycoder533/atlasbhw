@@ -40,9 +40,7 @@ export interface HeroSection extends Section {
     label: string;
     linkType: string;
     url: string;
-    // Define fields here based on your primaryCTA object structure
   };
-  // heroStyle: string;
   announcementBanner: string;
 }
 

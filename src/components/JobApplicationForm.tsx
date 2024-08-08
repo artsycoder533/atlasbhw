@@ -17,16 +17,16 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       setStatus("pending");
       setError(null);
       const myForm = event.target as HTMLFormElement;
-    //   const formData = new FormData(myForm);
-    const formData = new FormData(event.target as HTMLFormElement);
-    //   const params = new URLSearchParams();
-    //   formData.forEach((value, key) => {
-    //     params.append(key, value.toString());
-    //   });
+      //   const formData = new FormData(myForm);
+      const formData = new FormData(event.target as HTMLFormElement);
+      //   const params = new URLSearchParams();
+      //   formData.forEach((value, key) => {
+      //     params.append(key, value.toString());
+      //   });
       const res = await fetch("/__forms.html", {
         method: "POST",
         // body: params.toString(),
-        body: new URLSearchParams(formData).toString()
+        body: new URLSearchParams(formData as any).toString(),
       });
       if (res.status === 200) {
         setStatus("ok");
@@ -49,7 +49,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       data-netlify="true"
       data-netlify-recaptcha="true"
     >
-        <input type="hidden" name="form-name" value="atlasbhw-jobs" />
+      <input type="hidden" name="form-name" value="atlasbhw-jobs" />
       <div className="flex flex-col mb-3">
         <label htmlFor="name">Name: *</label>
         <input
@@ -119,7 +119,8 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       <p className="flex items-center gap-4">
         {status === "ok" ? (
           <>
-            Submitted! Thank you for your application! <BiCheckCircle className="text-2xl text-green-500" />
+            Submitted! Thank you for your application!{" "}
+            <BiCheckCircle className="text-2xl text-green-500" />
           </>
         ) : null}
       </p>

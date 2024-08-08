@@ -1,6 +1,7 @@
 import { JobListing } from "@/types";
 import { PortableText } from "next-sanity";
 import React from "react";
+import JobApplicationForm from "./JobApplicationForm";
 
 type Props = {
   data: JobListing;
@@ -17,10 +18,16 @@ const Job = ({ data }: Props) => {
     certification,
     benefits,
     responsibilities,
+    requestCoverLetter,
+    requestResume
   } = data;
 
   if (!data) {
-    return <p className="py-16 max-w-prose w-[90vw] mx-auto">We do not have any openings at this time.</p>;
+    return (
+      <p className="py-16 max-w-prose w-[90vw] mx-auto">
+        We do not have any openings at this time.
+      </p>
+    );
   }
   return (
     <section className="py-16 mx-auto prose max-w-prose w-[90vw]">
@@ -44,61 +51,7 @@ const Job = ({ data }: Props) => {
       <div>
         <h2>Job Application</h2>
         <p>* Denotes field is required</p>
-        <form action="" className="w-[90vw] max-w-prose flex flex-col">
-          <div className="flex flex-col mb-3">
-            <label htmlFor="name">Name: *</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="border p-1"
-              placeholder="name"
-            />
-          </div>
-          <div className="flex flex-col mb-3">
-            <label htmlFor="email">Email: *</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="border p-1"
-              placeholder="name@email.com"
-            />
-          </div>
-          <div className="flex flex-col mb-3">
-            <label htmlFor="phone">Phone: *</label>
-            <input
-              type="phone"
-              placeholder="(XXX)-XXX-XXXX"
-              className="border p-1"
-            />
-          </div>
-          <div className="flex flex-col mb-3">
-            <label htmlFor="coverLetter">Cover Letter: *</label>
-            <input
-              type="file"
-              name="coverLetter"
-              className="border p-1"
-              id="coverLetter"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="resume">Resume: *</label>
-            <input
-              type="file"
-              name="resume"
-              id="resume"
-              className="border p-1"
-            />
-          </div>
-
-          <button
-            className="px-6 py-2 mt-6 self-start bg-accent text-white rounded-md"
-            type="submit"
-          >
-            Apply
-          </button>
-        </form>
+        <JobApplicationForm requestResume={requestResume} requestCoverLetter={requestCoverLetter} />
       </div>
     </section>
   );

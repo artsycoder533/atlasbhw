@@ -301,8 +301,8 @@ export type JobListing = {
     style: string;
   }>;
   workLocation: string;
-  requestResume: string;
-  requestCoverLetter: string;
+  requestResume: boolean;
+  requestCoverLetter: boolean;
   benefits: Array<{
     _key: string;
     _type: "block";

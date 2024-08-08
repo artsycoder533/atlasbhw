@@ -26,7 +26,9 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       const res = await fetch("/__forms.html", {
         method: "POST",
         // body: params.toString(),
-        body: new URLSearchParams(formData as any).toString(),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        // body: new URLSearchParams(formData as any).toString(),
+        body: new FormData(event.target as HTMLFormElement)
       });
       if (res.status === 200) {
         setStatus("ok");

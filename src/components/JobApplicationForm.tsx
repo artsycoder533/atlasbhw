@@ -115,7 +115,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
           />
         </div>
       )}
-      {/* <div data-netlify-recaptcha="true"></div> */}
+      <div data-netlify-recaptcha="true"></div>
       <button
         className="px-6 py-2 mt-6 self-start bg-accent text-white rounded-md"
         type="submit"

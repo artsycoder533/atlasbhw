@@ -18,7 +18,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       setError(null);
       const myForm = event.target as HTMLFormElement;
       //   const formData = new FormData(myForm);
-      const formData = new FormData(event.target as HTMLFormElement);
+      const formData = new FormData(myForm);
       //   const params = new URLSearchParams();
       //   formData.forEach((value, key) => {
       //     params.append(key, value.toString());

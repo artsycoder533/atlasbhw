@@ -23,6 +23,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       //   formData.forEach((value, key) => {
       //     params.append(key, value.toString());
       //   });
+
       const res = await fetch("/__forms.html", {
         method: "POST",
         // body: params.toString(),
@@ -30,6 +31,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
         // body: new URLSearchParams(formData as any).toString(),
         body: new FormData(event.target as HTMLFormElement)
       });
+      console.log('res ===>', res.json)
       if (res.status === 200) {
         setStatus("ok");
         (myForm as HTMLFormElement).reset();
@@ -49,7 +51,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       name="atlasbhw-jobs"
       className="w-[90vw] max-w-prose flex flex-col"
       data-netlify="true"
-      data-netlify-recaptcha="true"
+    //   data-netlify-recaptcha="true"
     >
       <input type="hidden" name="form-name" value="atlasbhw-jobs" />
       <input type="hidden" name="bot-field" />
@@ -112,7 +114,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
           />
         </div>
       )}
-      <div data-netlify-recaptcha="true"></div>
+      {/* <div data-netlify-recaptcha="true"></div> */}
       <button
         className="px-6 py-2 mt-6 self-start bg-accent text-white rounded-md"
         type="submit"

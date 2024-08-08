@@ -48,6 +48,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       name="atlasbhw-jobs"
       className="w-[90vw] max-w-prose flex flex-col"
       data-netlify="true"
+      data-netlify-recaptcha="true"
       hidden
     >
       <div className="flex flex-col mb-3">

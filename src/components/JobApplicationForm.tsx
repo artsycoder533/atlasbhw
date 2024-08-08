@@ -22,7 +22,7 @@ const JobApplicationForm = ({ requestCoverLetter, requestResume }: Props) => {
       formData.forEach((value, key) => {
         params.append(key, value.toString());
       });
-      const res = await fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         body: params.toString(),
       });

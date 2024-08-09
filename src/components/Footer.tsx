@@ -47,7 +47,6 @@ type Props = {};
 const Footer = async (props: Props) => {
   const footerMenu = await sanityFetch<SanityDocument>({
     query: FOOTER_MENU_QUERY,
-    tags: ["site-wide"],
   });
   const {
     copyrightInfo,

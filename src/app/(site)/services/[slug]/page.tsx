@@ -32,7 +32,7 @@ const ServiceDetail = async ({ params }: Props) => {
   const serviceData = await sanityFetch<SanityDocument>({
     query: SERVICE_QUERY,
     params: { slug: params.slug },
-    tags: ['site-wide'],
+    tags: [`pages:${params.slug}`],
   });
 
   if (!serviceData) {

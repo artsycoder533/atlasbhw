@@ -42,7 +42,7 @@ const Page = async ({ params }: PageProps) => {
   const pageData = await sanityFetch<SanityDocument>({
     query: PAGE_QUERY,
     params: { slug: params.slug },
-    tags: ['site-wide'],
+    tags: [`pages:${params.slug}`],
   });
 
   if (!pageData) {

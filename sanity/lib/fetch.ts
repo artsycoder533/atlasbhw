@@ -21,11 +21,13 @@ export async function sanityFetch<QueryResponse>({
    */
   stega = perspective === "previewDrafts" ||
     process.env.VERCEL_ENV === "preview",
+    tags = [],
 }: {
   query: string;
   params?: QueryParams;
   perspective?: Omit<ClientPerspective, "raw">;
   stega?: boolean;
+  tags?: string[];
 }) {
   if (perspective === "previewDrafts") {
     return client.fetch<QueryResponse>(query, params, {
@@ -36,7 +38,7 @@ export async function sanityFetch<QueryResponse>({
       // The `previewDrafts` perspective isn't available on the API CDN
       useCdn: false,
       // And we can't cache the responses as it would slow down the live preview experience
-      next: { revalidate: 0 },
+      next: { revalidate: 0, tags },
     });
   }
   return client.fetch<QueryResponse>(query, params, {
@@ -47,6 +49,6 @@ export async function sanityFetch<QueryResponse>({
     // Only enable Stega in production if it's a Vercel Preview Deployment, as the Vercel Toolbar supports Visual Editing
     // When using the `published` perspective we use time-based revalidation to match the time-to-live on Sanity's API CDN (60 seconds)
     // next: { revalidate: 60 },
-    next: {revalidate: false}
+    next: {revalidate: false, tags }
   });
 }

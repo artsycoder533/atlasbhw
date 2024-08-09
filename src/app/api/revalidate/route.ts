@@ -37,10 +37,9 @@
 import { revalidatePath } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
-import { sanityFetch } from "../../../../sanity/lib/fetch";
-import { getPagesByDocumentTypeQuery } from "../../../../sanity/lib/queries";
+import { getPagesBasedOnDocumentType } from "@/utils/helper";
 
-// Example revalidation logic for dynamic routes
+// Route handler for POST requests
 export async function POST(req: NextRequest) {
   try {
     const { body, isValidSignature } = await parseBody<{
@@ -56,7 +55,7 @@ export async function POST(req: NextRequest) {
       return new Response("Bad Request", { status: 400 });
     }
 
-    // Fetch or compute the list of affected pages based on your logic
+    // Fetch the list of affected pages based on document type
     const pages = await getPagesBasedOnDocumentType(body._type);
 
     // Revalidate dynamic paths based on the page slugs
@@ -76,17 +75,8 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Example function to get affected pages based on content type
-// Function to get pages based on document type
-export async function getPagesBasedOnDocumentType(documentType: string) {
-  const query = getPagesByDocumentTypeQuery(documentType);
-  const pages = await sanityFetch<{ slug: string }>({
-    query,
-    tags: [`_type:${documentType}`], // Adjust tags if needed
-  });
 
-  return pages;
-}
+
 
 
 

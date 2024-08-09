@@ -8,9 +8,7 @@ import Image from "next/image";
 import { getYear } from "@/utils/helper";
 import Link from "next/link";
 import Title from "./Title";
-import {
-  FaHeart,
-} from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 import SocialMediaLinks from "./SocialMediaLinks";
 
@@ -49,7 +47,7 @@ type Props = {};
 const Footer = async (props: Props) => {
   const footerMenu = await sanityFetch<SanityDocument>({
     query: FOOTER_MENU_QUERY,
-    tags: ['site-wide']
+    tags: ["site-wide"],
   });
   const {
     copyrightInfo,
@@ -99,8 +97,7 @@ const Footer = async (props: Props) => {
         <p className="text-sm">
           &copy; {getYear()} {copyrightInfo}
         </p>
-        <SocialMediaLinks socialMedia={socialMedia}/>
-
+        <SocialMediaLinks socialMedia={socialMedia} />
       </div>
       <p className="text-sm flex gap-1 items-center justify-center">
         Made with <FaHeart className="text-red-700" /> by:

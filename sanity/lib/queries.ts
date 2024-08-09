@@ -123,19 +123,29 @@ export const PAGE_QUERY = groq`
         twitter,
         tiktok
       }
+      pages[]->{
+        slug
+      }
+  }
     },
     _type == 'heroPartial' => {
       heading,
-      backgroundImage
+      backgroundImage,
+      pages[]->{
+        slug
+      }
     },
     _type == 'about' => {
       missionStatement{
         heading,
-        bodyText
+        bodyText,
       },
       teachingSiteStatment{
         heading,
         bodyText
+      },
+      pages[]->{
+        slug
       }
     },
     _type == 'staffGroup' => {
@@ -151,6 +161,9 @@ export const PAGE_QUERY = groq`
           label,
           url
         }
+      },
+      pages[]->{
+        slug
       }
     },
      _type == 'faqs' => {
@@ -159,6 +172,9 @@ export const PAGE_QUERY = groq`
         _key,
         question,
         answer
+      },
+      pages[]->{
+        slug
       }
     },
     _type == 'resourceGroup' => {
@@ -178,8 +194,11 @@ export const PAGE_QUERY = groq`
             url
           }
         },
-        fileLabel
-     }
+        fileLabel,
+     },
+     pages[]->{
+        slug
+      }
     },
     _type == 'partnerGroup' => {
       _id,
@@ -199,6 +218,9 @@ export const PAGE_QUERY = groq`
             }
           }
         }
+      },
+      pages[]->{
+        slug
       }
     },
     _type == 'jobListing' => {
@@ -214,6 +236,9 @@ export const PAGE_QUERY = groq`
       requestCoverLetter,
       benefits,
       responsibilities,
+      pages[]->{
+        slug
+      }
     },
     _type == 'scheduleCTA' => {
       _id,
@@ -224,6 +249,9 @@ export const PAGE_QUERY = groq`
         url,
         email,
         ctaText,
+      },
+      pages[]->{
+        slug
       }
     },
   },

@@ -13,7 +13,7 @@ const Home = async () => {
     query: PAGE_QUERY,
     params: { slug: "/" },
     perspective: 'published',
-    tags: [`page: /`],
+    tags: ['site-wide'],
   });
 
   if (!pageData) {

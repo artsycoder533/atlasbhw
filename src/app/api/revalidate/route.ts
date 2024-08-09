@@ -59,16 +59,22 @@ import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
+const PAGE_TAG_PREFIX = 'page:';
+const CONTENT_TYPE_TAG_PREFIX = 'contentType:';
+
+// List of pages using specific content types (ideally managed dynamically)
+const contentTypePageMapping: Record<string, string[]> = {
+  'contactInfo': ['page:slug1', 'page:slug2'], // replace with actual page slugs
+  'heroSection': ['page:slug3'], // replace with actual page slugs
+  // Add other mappings as needed
+};
+
 export async function POST(req: NextRequest) {
   try {
     const { body, isValidSignature } = await parseBody<{
       _type: string;
-      slug?: string | undefined;
+      slug?: { current: string } | undefined;
     }>(req, process.env.MY_SECRET);
-
-    console.log("Received Signature:", req.headers.get("sanity-signature"));
-console.log("Expected Signature:", process.env.MY_SECRET);
-
 
     if (!isValidSignature) {
       return new Response("Invalid Signature", { status: 401 });
@@ -78,10 +84,18 @@ console.log("Expected Signature:", process.env.MY_SECRET);
       return new Response("Bad Request", { status: 400 });
     }
 
-    // revalidateTag(body._type);
-    // Revalidate based on the _type or slug
-    const revalidateTagOrSlug = body.slug ? body.slug : body._type;
-    revalidateTag(revalidateTagOrSlug);
+    // Revalidate based on content type and associated pages
+    const affectedPages = contentTypePageMapping[body._type] || [];
+    affectedPages.forEach((pageTag) => {
+      revalidateTag(pageTag);
+    });
+
+    // Revalidate the page based on slug if available
+    const pageSlug = body.slug?.current;
+    if (pageSlug) {
+      revalidateTag(`${PAGE_TAG_PREFIX}${pageSlug}`);
+    }
+
     return NextResponse.json({
       status: 200,
       revalidated: true,
@@ -93,4 +107,7 @@ console.log("Expected Signature:", process.env.MY_SECRET);
     return new Response(error.message, { status: 500 });
   }
 }
+
+
+
 

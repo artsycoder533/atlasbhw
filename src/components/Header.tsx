@@ -7,6 +7,7 @@ type Props = {}
 const Header = async (props: Props) => {
     const navigationMenu = await sanityFetch<SanityDocument>({
         query: NAVIGATION_MENU_QUERY,
+        tags: ['navigationMenu']
     });
 
   return (

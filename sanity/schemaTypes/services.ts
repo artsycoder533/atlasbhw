@@ -25,11 +25,11 @@ export default defineType({
       validation: (Rule) => Rule.required().error('Services are required')
     }),
     defineField({
-      name: 'page',
-      title: 'Page',
-      type: 'reference',
-      description: 'Select the page that this content will be displayed.',
-      to: [{ type: 'pages' }],
+      name: 'pages',
+      title: 'Pages',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'pages' }] }],
+      description: 'Select the pages where this content will be displayed.',
     }),
   ],
 });

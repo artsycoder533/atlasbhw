@@ -1,14 +1,12 @@
 import { groq } from "next-sanity";
 
-export const PAGES_AND_CONTENT_QUERY = groq`
-*[_type == "pages"]{
-  _id,
-  "slug": menuItem->slug.current,
-  content[]->{
-    _type
+// Define the GROQ query to fetch pages based on content type
+export const getPagesByDocumentTypeQuery = (documentType: string) => groq`
+  *[_type == "pages" && references(*[_type == "${documentType}"]._id)] {
+    slug
   }
-}
 `;
+
 
 export const NAVIGATION_MENU_QUERY = groq`
   *[_type == "navigationMenu"]{

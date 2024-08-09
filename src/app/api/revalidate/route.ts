@@ -90,34 +90,25 @@
 // }
 
 import { revalidatePath } from 'next/cache';
-import { sanityFetch } from '../../../../sanity/lib/fetch';
 
 export async function POST(request: Request) {
   const payload = await request.json();
   const { body } = payload.resultBody;
 
-  // Get the document ID and type from the webhook payload
-  const documentId = body._id;
+  // Directly use the slug from the payload
+  const slug = body.menuItem?.slug?.current;
 
-  // Query to fetch all pages that reference this specific document
-  const pages = await sanityFetch<{ slug: string }[]>({
-    query: `
-      *[_type == "pages" && references($docId)] {
-        'slug': menuItem->slug.current
-      }
-    `,
-    params: { docId: documentId }, // Use the document ID from the webhook payload
-    perspective: 'published', // Adjust perspective as needed
-  });
-
-  // Revalidate paths for all relevant pages
-  pages.forEach((page) => {
-    const slug = page.slug === "/" ? "/" : `/${page.slug}`;
-    revalidatePath(slug);
-  });
+  if (slug) {
+    // Revalidate the path
+    const normalizedSlug = slug === "/" ? "/" : `/${slug}`;
+    revalidatePath(normalizedSlug);
+  } else {
+    console.error('No slug found in the webhook payload');
+  }
 
   return new Response('Revalidation complete', { status: 200 });
 }
+
 
 
 

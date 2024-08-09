@@ -23,35 +23,67 @@
 // };
 
 
-import { NextRequest, NextResponse } from 'next/server';
+// import { NextRequest, NextResponse } from 'next/server';
+
+// export async function POST(req: NextRequest) {
+//   try {
+//     const secret = req.headers.get('x-secret-key');
+//     if (secret !== process.env.MY_SECRET) {
+//       return NextResponse.json({ message: 'Invalid token' }, { status: 403 });
+//     }
+
+//     const { path } = await req.json();
+
+//     try {
+//       // Trigger revalidation for the specified path
+//       await revalidatePath(path);
+//       return NextResponse.json({ revalidated: true });
+//     } catch (err) {
+//       return NextResponse.json({ message: 'Error revalidating path' }, { status: 500 });
+//     }
+//   } catch (err) {
+//     return NextResponse.json({ message: 'Error parsing request' }, { status: 500 });
+//   }
+// }
+
+// // A utility function to trigger revalidation (dummy implementation)
+// async function revalidatePath(path: string) {
+//   // Example: trigger revalidation logic here, for example using fetch with revalidate endpoint
+//   // const res = await fetch(`/api/revalidate?path=${path}`, { method: 'POST' });
+//   // if (!res.ok) throw new Error('Failed to revalidate');
+
+//   console.log(`Revalidating path: ${path}`);
+// }
+
+import { revalidateTag } from "next/cache";
+import { type NextRequest, NextResponse } from "next/server";
+import { parseBody } from "next-sanity/webhook";
 
 export async function POST(req: NextRequest) {
   try {
-    const secret = req.headers.get('x-secret-key');
-    if (secret !== process.env.MY_SECRET) {
-      return NextResponse.json({ message: 'Invalid token' }, { status: 403 });
+    const { body, isValidSignature } = await parseBody<{
+      _type: string;
+      slug?: string | undefined;
+    }>(req, process.env.MY_SECRET);
+
+    if (!isValidSignature) {
+      return new Response("Invalid Signature", { status: 401 });
     }
 
-    const { path } = await req.json();
-
-    try {
-      // Trigger revalidation for the specified path
-      await revalidatePath(path);
-      return NextResponse.json({ revalidated: true });
-    } catch (err) {
-      return NextResponse.json({ message: 'Error revalidating path' }, { status: 500 });
+    if (!body?._type) {
+      return new Response("Bad Request", { status: 400 });
     }
-  } catch (err) {
-    return NextResponse.json({ message: 'Error parsing request' }, { status: 500 });
+
+    revalidateTag(body._type);
+    return NextResponse.json({
+      status: 200,
+      revalidated: true,
+      now: Date.now(),
+      body,
+    });
+  } catch (error: any) {
+    console.error(error);
+    return new Response(error.message, { status: 500 });
   }
-}
-
-// A utility function to trigger revalidation (dummy implementation)
-async function revalidatePath(path: string) {
-  // Example: trigger revalidation logic here, for example using fetch with revalidate endpoint
-  // const res = await fetch(`/api/revalidate?path=${path}`, { method: 'POST' });
-  // if (!res.ok) throw new Error('Failed to revalidate');
-
-  console.log(`Revalidating path: ${path}`);
 }
 

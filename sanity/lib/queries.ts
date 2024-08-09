@@ -115,7 +115,7 @@ export const PAGE_QUERY = groq`
         twitter,
         tiktok
       }
-      pages[]->{
+      pages[]-> {
         slug
       }
   }
@@ -123,7 +123,7 @@ export const PAGE_QUERY = groq`
     _type == 'heroPartial' => {
       heading,
       backgroundImage,
-      pages[]->{
+      pages[]-> {
         slug
       }
     },
@@ -136,7 +136,7 @@ export const PAGE_QUERY = groq`
         heading,
         bodyText
       },
-      pages[]->{
+      pages[]-> {
         slug
       }
     },
@@ -165,7 +165,7 @@ export const PAGE_QUERY = groq`
         question,
         answer
       },
-      pages[]->{
+      pages[]-> {
         slug
       }
     },
@@ -188,7 +188,7 @@ export const PAGE_QUERY = groq`
         },
         fileLabel,
      },
-     pages[]->{
+     pages[]-> {
         slug
       }
     },
@@ -211,7 +211,7 @@ export const PAGE_QUERY = groq`
           }
         }
       },
-      pages[]->{
+      pages[]-> {
         slug
       }
     },
@@ -228,7 +228,7 @@ export const PAGE_QUERY = groq`
       requestCoverLetter,
       benefits,
       responsibilities,
-      pages[]->{
+      pages[]-> {
         slug
       }
     },
@@ -242,7 +242,7 @@ export const PAGE_QUERY = groq`
         email,
         ctaText,
       },
-      pages[]->{
+      pages[]-> {
         slug
       }
     },

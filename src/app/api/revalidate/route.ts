@@ -89,42 +89,36 @@
 //   }
 // }
 
-import { revalidatePath } from "next/cache";
-import { NextRequest, NextResponse } from "next/server";
-import { parseBody } from "next-sanity/webhook";
+import { revalidatePath } from 'next/cache';
+import { sanityFetch } from '../../../../sanity/lib/fetch';
 
-export async function POST(req: NextRequest) {
-  try {
-    const { body, isValidSignature } = await parseBody<{
-      _type: string;
-      slug?: { current: string } | undefined;
-      pageSlug?: string;  // Assuming sections have a reference to their page
-    }>(req, process.env.MY_SECRET);
+export async function POST(request: Request) {
+  const payload = await request.json();
+  const { body } = payload.resultBody;
 
-    if (!isValidSignature) {
-      return new Response("Invalid Signature", { status: 401 });
-    }
+  // Get the document ID and type from the webhook payload
+  const documentId = body._id;
 
-    if (!body?._type) {
-      return new Response("Bad Request", { status: 400 });
-    }
+  // Query to fetch all pages that reference this specific document
+  const pages = await sanityFetch<{ slug: string }[]>({
+    query: `
+      *[_type == "pages" && references($docId)] {
+        'slug': menuItem->slug.current
+      }
+    `,
+    params: { docId: documentId }, // Use the document ID from the webhook payload
+    perspective: 'published', // Adjust perspective as needed
+  });
 
-    // Example: Assuming each section has a `pageSlug` field referencing the page it belongs to
-    if (body._type === "section" && body.pageSlug) {
-      revalidatePath(`/${body.pageSlug}`);
-    }
+  // Revalidate paths for all relevant pages
+  pages.forEach((page) => {
+    const slug = page.slug === "/" ? "/" : `/${page.slug}`;
+    revalidatePath(slug);
+  });
 
-    return NextResponse.json({
-      status: 200,
-      revalidated: true,
-      now: Date.now(),
-      body,
-    });
-  } catch (error: any) {
-    console.error(error);
-    return new Response(error.message, { status: 500 });
-  }
+  return new Response('Revalidation complete', { status: 200 });
 }
+
 
 
 

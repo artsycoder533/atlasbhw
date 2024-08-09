@@ -53,6 +53,13 @@ export default defineType({
             title: 'Social Media Links',
             type: 'array',
             of: [{type: 'reference', to:  [{type: 'socialMediaLinks'}]}],
-        })
+        }),
+        defineField({
+            name: 'page',
+            title: 'Page',
+            type: 'reference',
+            description: 'Select the page that this content will be displayed.',
+            to: [{ type: 'pages' }],
+          }),
     ],
 })

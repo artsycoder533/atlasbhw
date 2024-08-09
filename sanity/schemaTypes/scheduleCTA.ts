@@ -59,6 +59,13 @@ export default defineType({
       ],
       validation: Rule => Rule.max(2).error('You can only add up to 2 CTA items'),
     }),
+    defineField({
+      name: 'page',
+      title: 'Page',
+      type: 'reference',
+      description: 'Select the page that this content will be displayed.',
+      to: [{ type: 'pages' }],
+    }),
   ],
 });
 

@@ -72,5 +72,12 @@ export default defineType({
       title: "Request Cover Letter?",
       type: "boolean",
     }),
+    defineField({
+      name: 'page',
+      title: 'Page',
+      type: 'reference',
+      description: 'Select the page that this content will be displayed.',
+      to: [{ type: 'pages' }],
+    }),
   ],
 });

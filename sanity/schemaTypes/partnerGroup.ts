@@ -16,5 +16,12 @@ export default defineType({
       type: "array",
       of: [{ type: "partner" }],
     }),
+    defineField({
+      name: 'page',
+      title: 'Page',
+      type: 'reference',
+      description: 'Select the page that this content will be displayed.',
+      to: [{ type: 'pages' }],
+    }),
   ],
 });

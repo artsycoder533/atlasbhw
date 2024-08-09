@@ -66,6 +66,10 @@ export async function POST(req: NextRequest) {
       slug?: string | undefined;
     }>(req, process.env.MY_SECRET);
 
+    console.log("Received Signature:", req.headers.get("sanity-signature"));
+console.log("Expected Signature:", process.env.MY_SECRET);
+
+
     if (!isValidSignature) {
       return new Response("Invalid Signature", { status: 401 });
     }

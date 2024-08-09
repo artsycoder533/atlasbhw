@@ -12,8 +12,8 @@ const Home = async () => {
   const pageData = await sanityFetch<PageData>({
     query: PAGE_QUERY,
     params: { slug: "/" },
+    perspective: 'published',
     tags: [`page: /`],
-
   });
 
   if (!pageData) {

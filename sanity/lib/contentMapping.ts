@@ -9,6 +9,7 @@ let pageContentMapping: Record<string, string[]> = {};
 export async function fetchPageContentMapping() {
   const pages = await sanityFetch<PageDataForMappings[]>({
     query: PAGES_AND_CONTENT_QUERY,
+    perspective: 'published'
   });
   pageContentMapping = {};
 

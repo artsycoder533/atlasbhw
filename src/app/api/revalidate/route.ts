@@ -35,13 +35,20 @@
 // }
 
 import { revalidatePath } from "next/cache";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
-import { getPagesBasedOnDocumentType } from "@/utils/helper";
+import { sanityFetch } from "../../../../sanity/lib/fetch";
 
-// Route handler for POST requests
+// Define the query to get pages based on document type
+const getPagesQuery = (documentType: string) => `
+  *[_type == "${documentType}"] {
+    references(*[_type == "page"].slug.current)
+  }
+`;
+
 export async function POST(req: NextRequest) {
   try {
+    // Parse the incoming webhook request
     const { body, isValidSignature } = await parseBody<{
       _type: string;
       slug?: { current: string } | undefined;
@@ -55,12 +62,19 @@ export async function POST(req: NextRequest) {
       return new Response("Bad Request", { status: 400 });
     }
 
-    // Fetch the list of affected pages based on document type
-    const pages = await getPagesBasedOnDocumentType(body._type);
+    // Fetch the list of slugs for the given document type
+    const query = getPagesQuery(body._type);
+    const result = await sanityFetch<{ references: { slug: string }[] }>({
+      query,
+      tags: [`_type:${body._type}`]  // Adjust the tags if necessary
+    });
 
-    // Revalidate dynamic paths based on the page slugs
-    for (const page of pages) {
-      revalidatePath(`/${page.slug}`); // Ensure this matches your dynamic route
+    // Flatten the references array and get slugs
+    const slugs = result.references.map(ref => ref.slug);
+
+    // Revalidate each path
+    for (const slug of slugs) {
+      revalidatePath(`/${slug}`);
     }
 
     return NextResponse.json({
@@ -74,6 +88,8 @@ export async function POST(req: NextRequest) {
     return new Response(error.message, { status: 500 });
   }
 }
+
+
 
 
 

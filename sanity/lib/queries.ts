@@ -1,13 +1,5 @@
 import { groq } from "next-sanity";
 
-// Define the GROQ query to fetch pages based on content type
-export const getPagesByDocumentTypeQuery = (documentType: string) => groq`
-  *[_type == "pages" && references(*[_type == "${documentType}"]._id)] {
-    slug
-  }
-`;
-
-
 export const NAVIGATION_MENU_QUERY = groq`
   *[_type == "navigationMenu"]{
     logo,

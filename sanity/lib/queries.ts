@@ -1,5 +1,15 @@
 import { groq } from "next-sanity";
 
+export const PAGES_AND_CONTENT_QUERY = groq`
+*[_type == "pages"]{
+  _id,
+  "slug": menuItem->slug.current,
+  content[]->{
+    _type
+  }
+}
+`;
+
 export const NAVIGATION_MENU_QUERY = groq`
   *[_type == "navigationMenu"]{
     logo,

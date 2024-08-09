@@ -1,5 +1,16 @@
 import { SanityAsset } from "@sanity/image-url/lib/types/types";
 
+
+export interface ContentItem {
+  _type: string;
+}
+
+export interface PageDataForMappings {
+  _id: string;
+  slug: string;
+  content: ContentItem[];
+}
+
 export type MenuItem = {
   label: string;
   slug: {

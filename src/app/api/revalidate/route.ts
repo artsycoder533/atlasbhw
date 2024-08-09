@@ -58,17 +58,13 @@
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
+import { initializeContentMapping, getContentMapping } from "../../../../sanity/lib/contentMapping";
 
 const PAGE_TAG_PREFIX = 'page:';
 const CONTENT_TYPE_TAG_PREFIX = 'contentType:';
 
-// List of pages using specific content types (ideally managed dynamically)
-const contentTypePageMapping: Record<string, string[]> = {
-  'contactInfo': ['page:slug1', 'page:slug2'], // replace with actual page slugs
-  'heroSection': ['page:slug3'], // replace with actual page slugs
-  // Add other mappings as needed
-};
-
+// Ensure content mappings are initialized
+await initializeContentMapping();
 export async function POST(req: NextRequest) {
   try {
     const { body, isValidSignature } = await parseBody<{
@@ -84,8 +80,11 @@ export async function POST(req: NextRequest) {
       return new Response("Bad Request", { status: 400 });
     }
 
+  
+    const contentTypeMappings = getContentMapping();
+    const affectedPages = contentTypeMappings[body._type] || [];
+
     // Revalidate based on content type and associated pages
-    const affectedPages = contentTypePageMapping[body._type] || [];
     affectedPages.forEach((pageTag) => {
       revalidateTag(pageTag);
     });

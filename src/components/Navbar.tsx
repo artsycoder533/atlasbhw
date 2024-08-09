@@ -7,12 +7,14 @@ import { SanityDocument } from "next-sanity";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 import { MenuItem } from "@/types";
 import { urlFor } from "@/utils/helper";
+import { usePathname } from "next/navigation";
 
 type Props = {
   navigationMenu: SanityDocument;
 };
 
 const Navbar = ({ navigationMenu }: Props) => {
+  const pathname = usePathname();
   const { logo, links } = navigationMenu;
 
   const [open, setOpen] = useState<boolean>(false);
@@ -34,18 +36,26 @@ const Navbar = ({ navigationMenu }: Props) => {
     setOpenDropdown((prev) => (prev === label ? null : label));
   };
 
-  const constructHref = (slug: string, slugType: string, parentSlug: string | null = null) => {
+  const constructHref = (
+    slug: string,
+    slugType: string,
+    parentSlug: string | null = null
+  ) => {
     let href = "";
-    switch (slugType) {
-      case "relativeUrl":
-        href = parentSlug ? `/${parentSlug}/${slug}` : `/${slug}`;
-        break;
-      case "externalUrl":
-        href = slug;
-        break;
-      case "anchorLink":
-        href = parentSlug ? `/${parentSlug}/#${slug}` : `#${slug}`;
-        break;
+    if (slug === "/") {
+      href = "/";
+    } else {
+      switch (slugType) {
+        case "relativeUrl":
+          href = parentSlug ? `/${parentSlug}/${slug}` : `/${slug}`;
+          break;
+        case "externalUrl":
+          href = slug;
+          break;
+        case "anchorLink":
+          href = parentSlug ? `/${parentSlug}/#${slug}` : `#${slug}`;
+          break;
+      }
     }
     return href;
   };
@@ -116,10 +126,14 @@ const Navbar = ({ navigationMenu }: Props) => {
                         <Link
                           href={dropdownHref}
                           onClick={() => {
-                            toggleDropdown('')
-                            setOpen(false)
+                            toggleDropdown("");
+                            setOpen(false);
                           }}
-                          className="flex px-4 py-2 hover:bg-gray-100 hover:text-accent"
+                          className={`flex px-4 py-2 ${
+                            pathname === dropdownHref
+                              ? "bg-gray-100 text-accent px-4"
+                              : "hover:bg-gray-100 hover:text-accent"
+                          }`}
                         >
                           {dropdownLink.label}
                         </Link>
@@ -136,13 +150,17 @@ const Navbar = ({ navigationMenu }: Props) => {
           return (
             <li key={_id}>
               <Link
-                className={`rounded-md text-xl lg:text-base py-2 text-primary-text hover:text-accent ${
+                className={`rounded-md text-xl lg:text-base py-2 ${
+                  pathname === href
+                    ? " text-accent underline underline-offset-8"
+                    : "text-primary-text hover:text-accent"
+                } ${
                   isCTA
                     ? "bg-accent px-4 py-3 font-medium text-white hover:bg-primary-brown hover:text-white"
                     : "bg-none"
                 }`}
                 href={href}
-                scroll={false}
+                scroll={true}
                 onClick={() => setOpen(false)}
               >
                 {label}
@@ -156,4 +174,3 @@ const Navbar = ({ navigationMenu }: Props) => {
 };
 
 export default Navbar;
-

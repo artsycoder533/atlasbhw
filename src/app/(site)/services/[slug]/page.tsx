@@ -55,6 +55,8 @@ const ServiceDetail = async ({ params }: Props) => {
           <Title title={title} size="lg" altColor />
           <Link
             href={ehrLink.url}
+            target="_blank"
+            rel="noreferrer noopener"
             className="z-10 rounded-md bg-accent px-4 py-3 no-underline text-white shadow-sm hover:bg-primary-brown focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent self-center mt-6"
           >
             {ehrLink.label}

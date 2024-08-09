@@ -114,15 +114,15 @@ export const PAGE_QUERY = groq`
         facebook,
         twitter,
         tiktok
-      }
-      pages[]-> {
+      },
+      pages[]->{
         slug
       }
     },
     _type == 'heroPartial' => {
       heading,
       backgroundImage,
-      pages[]-> {
+      pages[]->{
         slug
       }
     },
@@ -135,13 +135,13 @@ export const PAGE_QUERY = groq`
         heading,
         bodyText
       },
-      pages[]-> {
+      pages[]->{
         slug
       }
     },
     _type == 'staffGroup' => {
       title,
-      staffMembers[]-> {
+      staffMembers[]->{
         _id,
         name,
         headshot,
@@ -157,14 +157,14 @@ export const PAGE_QUERY = groq`
         slug
       }
     },
-     _type == 'faqs' => {
+    _type == 'faqs' => {
       title,
       faqsList[] {
         _key,
         question,
         answer
       },
-      pages[]-> {
+      pages[]->{
         slug
       }
     },
@@ -185,9 +185,9 @@ export const PAGE_QUERY = groq`
             url
           }
         },
-        fileLabel,
-     },
-     pages[]-> {
+        fileLabel
+      },
+      pages[]->{
         slug
       }
     },
@@ -210,7 +210,7 @@ export const PAGE_QUERY = groq`
           }
         }
       },
-      pages[]-> {
+      pages[]->{
         slug
       }
     },
@@ -227,24 +227,24 @@ export const PAGE_QUERY = groq`
       requestCoverLetter,
       benefits,
       responsibilities,
-      pages[]-> {
+      pages[]->{
         slug
       }
     },
     _type == 'scheduleCTA' => {
       _id,
       heading,
-      ctaItems[] => {
+      ctaItems[] {
         _key,
         label,
         url,
         email,
-        ctaText,
+        ctaText
       },
-      pages[]-> {
+      pages[]->{
         slug
       }
-    },
+    }
   },
   menuItem->{
     label,
@@ -252,6 +252,7 @@ export const PAGE_QUERY = groq`
   }
 }
 `;
+
 
 export const SERVICE_QUERY = groq`
   *[_type == "service" && slug.current == $slug][0]{

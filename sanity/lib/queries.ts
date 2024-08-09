@@ -118,7 +118,6 @@ export const PAGE_QUERY = groq`
       pages[]-> {
         slug
       }
-  }
     },
     _type == 'heroPartial' => {
       heading,
